@@ -3,11 +3,16 @@
 A modern, fast, fully responsive marketing site for **JM LUX Painting Inc.**, a
 residential & commercial painting company serving Massachusetts.
 
-A single-page experience built around the company's brand identity — the
+A multi-page experience built around the company's brand identity — the
 **emerald → teal → steel-blue gradient** pulled straight from the JM LUX logo —
 with a full-bleed photo hero, a filterable project gallery with a lightbox,
 smooth scroll-reveal animations, and a contact form. Built as a static site
 with **no build step and no dependencies**.
+
+The site is split into five pages that share one header, footer, stylesheet,
+and JS bundle: **Home** (`index.html`), **Services** (`services.html`),
+**About** (`about.html`), **Gallery** (`gallery.html`), and
+**Contact** (`contact.html`).
 
 ## Highlights
 
@@ -24,7 +29,11 @@ with **no build step and no dependencies**.
 
 ```
 .
-├── index.html                  # All sections (hero, services, about, process, gallery, reviews, contact)
+├── index.html                  # Home — hero, marquee, services teaser, CTA
+├── services.html               # Services grid, "Why Us", and Process steps
+├── about.html                  # About story + customer reviews
+├── gallery.html                # Filterable project gallery + lightbox
+├── contact.html                # Contact details + estimate request form
 ├── assets/
 │   ├── css/styles.css          # Brand tokens + components + responsive rules
 │   ├── js/main.js              # Header, mobile menu, reveals, marquee, gallery filter, lightbox, form
@@ -35,6 +44,10 @@ with **no build step and no dependencies**.
 │       └── portfolio/          # Optimized project photos used in the gallery
 └── README.md
 ```
+
+> The shared header/nav, footer, and lightbox markup are duplicated across the
+> five HTML pages (no templating, to keep the zero-build promise). When editing
+> the nav, contact details, or footer, update each page.
 
 > The original full-resolution uploads remain in git history; the versions under
 > `assets/img/` are web-optimized (resized + recompressed) for fast loading.
@@ -55,8 +68,8 @@ python3 -m http.server 8000
 ## Customizing
 
 - **Brand colors & fonts** live as CSS custom properties at the top of `assets/css/styles.css` (`:root`).
-- **Business details** (phone, email, address, hours) appear in `index.html` — search for `978-387-0562` / `jmluxpainting@gmail.com` and the JSON-LD block.
-- **Services, reviews, and gallery tiles** are plain HTML blocks in `index.html`, easy to add or edit.
+- **Business details** (phone, email, address, hours) appear in the header/footer of every page and on `contact.html` — search for `978-387-0562` / `jmluxpainting@gmail.com`. The `LocalBusiness` JSON-LD block lives in `index.html`.
+- **Services** are plain HTML blocks in `services.html`, **reviews** in `about.html`, and **gallery tiles** in `gallery.html` — all easy to add or edit.
 
 ### Wiring the contact form to a real inbox
 
