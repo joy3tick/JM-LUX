@@ -1,5 +1,5 @@
 /* =====================================================================
-   JM LUX Painting — interactions
+   JM LUX Painting interactions
    ===================================================================== */
 (function () {
   "use strict";
@@ -171,10 +171,10 @@
         setNote("Please add your name and email so we can reach you.", "is-error");
         return;
       }
-      var subject = "Estimate request — " + service + " (" + name + ")";
+      var subject = "Estimate request: " + service + " (" + name + ")";
       var body = [
-        "Name: " + name, "Email: " + email, "Phone: " + (phone || "—"),
-        "Project type: " + service, "", "Details:", message || "—"
+        "Name: " + name, "Email: " + email, "Phone: " + (phone || "Not provided"),
+        "Project type: " + service, "", "Details:", message || "No details provided"
       ].join("\n");
       window.location.href = "mailto:jmluxpainting@gmail.com?subject=" +
         encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
