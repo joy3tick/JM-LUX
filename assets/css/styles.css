@@ -126,9 +126,9 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .brand-logo { height: 56px; width: auto; filter: drop-shadow(0 4px 14px rgba(0,0,0,.35)); transition: height .35s var(--ease), filter .35s var(--ease); }
 .site-header.is-stuck .brand-logo { height: 48px; filter: none; }
 
-.nav-list { display: flex; gap: .35rem; }
+.nav-list { display: flex; gap: .15rem; }
 .nav-list a {
-  display: block; padding: .5rem .8rem; border-radius: 999px;
+  display: block; padding: .5rem .66rem; border-radius: 999px;
   font-weight: 500; font-size: .92rem; color: rgba(255,255,255,.86);
   transition: color .25s var(--ease), background .25s var(--ease);
 }
@@ -136,7 +136,7 @@ h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 600; line-height
 .site-header.is-stuck .nav-list a { color: var(--text-soft); }
 .site-header.is-stuck .nav-list a:hover { color: var(--ink); background: rgba(12,39,46,.06); }
 
-.header-actions { display: flex; align-items: center; gap: .8rem; }
+.header-actions { display: flex; align-items: center; gap: .6rem; }
 .phone-link { display: inline-flex; align-items: center; gap: .45rem; font-weight: 600; font-size: .92rem; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.3); transition: color .35s var(--ease); }
 .phone-link svg { width: 17px; height: 17px; color: #7fd9cf; }
 .site-header.is-stuck .phone-link { color: var(--ink); text-shadow: none; }
@@ -365,16 +365,16 @@ body.menu-open .mobile-nav { transform: translateY(0); }
    responsive
    ===================================================================== */
 @media (max-width: 1024px) {
+  .nav { display: none; }
+  .nav-toggle { display: block; }
+  .header-cta { display: none; }
   .services-grid { grid-template-columns: repeat(2, 1fr); }
   .gallery { grid-template-columns: repeat(3, 1fr); }
   .why-layout { grid-template-columns: 1fr; }
   .process { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 860px) {
-  .nav { display: none; }
-  .header-cta { display: none; }
   .phone-link span { display: none; }
-  .nav-toggle { display: block; }
   .about-layout, .contact-layout { grid-template-columns: 1fr; }
   .about-visual { max-width: 460px; }
   .reviews-grid { grid-template-columns: 1fr; }
