@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#15151a" />
-  <title>JM LUX Painting Inc. — Luxury Interior & Exterior Painting | Lawrence, MA</title>
+  <meta name="theme-color" content="#0c272e" />
+  <title>JM LUX Painting Inc. — Luxury Interior &amp; Exterior Painting | Lawrence, MA</title>
   <meta name="description" content="JM LUX Painting Inc. delivers a flawless, luxurious finish for homes and businesses across Massachusetts. Interior, exterior, cabinets, staining & specialty finishes. Free estimates — 978-387-0562." />
 
-  <!-- Open Graph -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="JM LUX Painting Inc. — A Flawless Finish, Every Time" />
   <meta property="og:description" content="Premium residential & commercial painting across Massachusetts. Free estimates, fully insured, meticulous craftsmanship." />
+  <meta property="og:image" content="assets/img/hero.jpg" />
   <meta property="og:locale" content="en_US" />
 
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
@@ -19,37 +19,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/styles.css" />
 
-  <!-- Structured data: Local business / Painting contractor -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "HousePainter",
     "name": "JM LUX Painting Inc.",
-    "image": "https://www.jmluxpainting.com/assets/img/favicon.svg",
+    "image": "https://www.jmluxpainting.com/assets/img/logo.png",
     "telephone": "+1-978-387-0562",
     "email": "jmluxpainting@gmail.com",
     "priceRange": "$$",
     "url": "https://www.jmluxpainting.com/",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "226 Common St #406",
-      "addressLocality": "Lawrence",
-      "addressRegion": "MA",
-      "postalCode": "01840",
-      "addressCountry": "US"
-    },
+    "address": { "@type": "PostalAddress", "streetAddress": "226 Common St #406", "addressLocality": "Lawrence", "addressRegion": "MA", "postalCode": "01840", "addressCountry": "US" },
     "areaServed": { "@type": "State", "name": "Massachusetts" },
-    "openingHoursSpecification": [{
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
-      "opens": "07:00",
-      "closes": "17:00"
-    }],
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "5.0",
-      "reviewCount": "27"
-    }
+    "openingHoursSpecification": [{ "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"], "opens": "07:00", "closes": "17:00" }],
+    "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5.0", "reviewCount": "27" }
   }
   </script>
 </head>
@@ -60,14 +43,7 @@
   <header class="site-header" id="top" data-header>
     <div class="container header-inner">
       <a class="brand" href="#top" aria-label="JM LUX Painting — home">
-        <span class="brand-mark" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M3 7h13v4H3z" />
-            <path d="M16 9h3a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-6" />
-            <path d="M11 14v3a2 2 0 0 1-2 2H8a1 1 0 0 1-1-1v-4" />
-          </svg>
-        </span>
-        <span class="brand-text">JM&nbsp;LUX<span class="brand-sub">Painting</span></span>
+        <img class="brand-logo" src="assets/img/logo.png" alt="JM LUX Painting Inc. logo" width="884" height="783" />
       </a>
 
       <nav class="nav" aria-label="Primary">
@@ -95,7 +71,6 @@
     </div>
   </header>
 
-  <!-- Mobile nav drawer -->
   <div class="mobile-nav" id="mobile-nav" data-mobile-nav hidden>
     <ul>
       <li><a href="#services">Services</a></li>
@@ -113,18 +88,11 @@
   <main id="main">
     <!-- ============ HERO ============ -->
     <section class="hero">
-      <div class="hero-bg" aria-hidden="true">
-        <span class="stroke stroke-1"></span>
-        <span class="stroke stroke-2"></span>
-        <span class="hero-grain"></span>
-      </div>
+      <img class="hero-img" src="assets/img/hero.jpg" alt="Vaulted great room with deep navy walls and a white beamed ceiling painted by JM LUX" fetchpriority="high" />
+      <div class="hero-overlay" aria-hidden="true"></div>
       <div class="container hero-inner">
-        <p class="eyebrow reveal" data-reveal>
-          <span class="dot"></span> Massachusetts · Residential &amp; Commercial
-        </p>
-        <h1 class="hero-title reveal" data-reveal>
-          A flawless finish,<br /><span class="accent">crafted with care.</span>
-        </h1>
+        <p class="eyebrow on-photo reveal" data-reveal><span class="dot"></span> Massachusetts · Residential &amp; Commercial</p>
+        <h1 class="hero-title reveal" data-reveal>A flawless finish,<br /><span class="accent">crafted with care.</span></h1>
         <p class="hero-lead reveal" data-reveal>
           JM LUX Painting transforms homes and businesses with a luxurious,
           long-lasting finish. Meticulous prep, premium materials, and a crew
@@ -138,54 +106,22 @@
           </a>
         </div>
         <ul class="hero-badges reveal" data-reveal>
-          <li>
-            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
-            <span>5.0 Customer Rating</span>
-          </li>
+          <li><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><span>5.0 Customer Rating</span></li>
           <li><span class="check">✓</span> Fully Licensed &amp; Insured</li>
           <li><span class="check">✓</span> Free, No-Pressure Estimates</li>
         </ul>
       </div>
-
-      <!-- Floating palette card -->
-      <div class="palette-card reveal" data-reveal aria-hidden="true">
-        <div class="palette-head">
-          <span>Today's Palette</span>
-          <span class="palette-tag">Lux Collection</span>
-        </div>
-        <div class="swatches">
-          <span style="--c:#1f2a37"></span>
-          <span style="--c:#cdb892"></span>
-          <span style="--c:#f3ede1"></span>
-          <span style="--c:#7d8b7a"></span>
-          <span style="--c:#b8893b"></span>
-        </div>
-        <p class="palette-foot">Hand-matched to your space</p>
-      </div>
+      <div class="scroll-hint" aria-hidden="true"><span class="line"></span>Scroll</div>
     </section>
 
-    <!-- ============ MARQUEE / TRUST BAR ============ -->
+    <!-- ============ MARQUEE ============ -->
     <div class="trustbar">
       <div class="marquee" data-marquee>
         <div class="marquee-track">
-          <span>Interior Painting</span><span>•</span>
-          <span>Exterior Painting</span><span>•</span>
-          <span>Cabinet Refinishing</span><span>•</span>
-          <span>Wood Staining</span><span>•</span>
-          <span>Specialty Finishes</span><span>•</span>
-          <span>Decks &amp; Porches</span><span>•</span>
-          <span>Metal Railings &amp; Stairs</span><span>•</span>
-          <span>Commercial Painting</span><span>•</span>
+          <span>Interior Painting</span><span>•</span><span>Exterior Painting</span><span>•</span><span>Cabinet Refinishing</span><span>•</span><span>Wood Staining</span><span>•</span><span>Specialty Finishes</span><span>•</span><span>Decks &amp; Porches</span><span>•</span><span>Metal Railings &amp; Stairs</span><span>•</span><span>Commercial Painting</span><span>•</span>
         </div>
         <div class="marquee-track" aria-hidden="true">
-          <span>Interior Painting</span><span>•</span>
-          <span>Exterior Painting</span><span>•</span>
-          <span>Cabinet Refinishing</span><span>•</span>
-          <span>Wood Staining</span><span>•</span>
-          <span>Specialty Finishes</span><span>•</span>
-          <span>Decks &amp; Porches</span><span>•</span>
-          <span>Metal Railings &amp; Stairs</span><span>•</span>
-          <span>Commercial Painting</span><span>•</span>
+          <span>Interior Painting</span><span>•</span><span>Exterior Painting</span><span>•</span><span>Cabinet Refinishing</span><span>•</span><span>Wood Staining</span><span>•</span><span>Specialty Finishes</span><span>•</span><span>Decks &amp; Porches</span><span>•</span><span>Metal Railings &amp; Stairs</span><span>•</span><span>Commercial Painting</span><span>•</span>
         </div>
       </div>
     </div>
@@ -194,79 +130,47 @@
     <section class="section" id="services">
       <div class="container">
         <header class="section-head reveal" data-reveal>
-          <p class="eyebrow eyebrow--dark"><span class="dot"></span> What We Do</p>
+          <p class="eyebrow"><span class="dot"></span> What We Do</p>
           <h2 class="section-title">Painting services, perfected</h2>
-          <p class="section-sub">
-            From a single accent wall to a full commercial repaint, every project
-            gets the same careful prep, clean lines, and rich, durable finish.
-          </p>
+          <p class="section-sub">From a single accent wall to a full commercial repaint, every project gets the same careful prep, clean lines, and rich, durable finish.</p>
         </header>
 
         <div class="grid services-grid">
           <article class="card service-card reveal" data-reveal>
-            <span class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h13v5H3z"/><path d="M9.5 12v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2"/><path d="M16 8h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2"/></svg>
-            </span>
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h13v5H3z"/><path d="M9.5 12v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2"/><path d="M16 8h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2"/></svg></span>
             <h3>Interior Painting</h3>
             <p>Walls, ceilings, and trim finished to a smooth, even, luxurious sheen — our specialty.</p>
           </article>
-
           <article class="card service-card reveal" data-reveal>
-            <span class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg>
-            </span>
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></span>
             <h3>Exterior Painting</h3>
             <p>Weather-ready coatings that protect siding, doors, and trim while boosting curb appeal.</p>
           </article>
-
           <article class="card service-card reveal" data-reveal>
-            <span class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M12 3v18"/><path d="M8 7.5v2"/><path d="M16 7.5v2"/></svg>
-            </span>
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M12 3v18"/><path d="M8 7.5v2"/><path d="M16 7.5v2"/></svg></span>
             <h3>Cabinet Refinishing</h3>
             <p>Kitchens reborn with a factory-smooth, hard-wearing finish — no full remodel required.</p>
           </article>
-
           <article class="card service-card reveal" data-reveal>
-            <span class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7c4-3 12-3 16 0"/><path d="M4 12c4-3 12-3 16 0"/><path d="M4 17c4-3 12-3 16 0"/></svg>
-            </span>
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 7c4-3 12-3 16 0"/><path d="M4 12c4-3 12-3 16 0"/><path d="M4 17c4-3 12-3 16 0"/></svg></span>
             <h3>Wood Staining</h3>
             <p>Rich, even stains that highlight natural grain on doors, railings, and built-ins.</p>
           </article>
-
           <article class="card service-card reveal" data-reveal>
-            <span class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 3 2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9 2.6.9-5.5-4-3.9 5.5-.8z" transform="scale(.85) translate(2 1)"/></svg>
-            </span>
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m12 3 2.5 5 5.5.8-4 3.9.9 5.5L12 21l-4.9 2.6.9-5.5-4-3.9 5.5-.8z" transform="scale(.85) translate(2 1)"/></svg></span>
             <h3>Specialty Finishes</h3>
-            <p>Accent walls, faux textures, and decorative finishes that add depth and character.</p>
+            <p>Accent walls, faux textures, metallic epoxy floors, and decorative finishes with real depth.</p>
           </article>
-
           <article class="card service-card reveal" data-reveal>
-            <span class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17h18"/><path d="M5 17v-4h14v4"/><path d="M7 13V9h10v4"/><path d="M9 9V6h6v3"/></svg>
-            </span>
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 17h18"/><path d="M5 17v-4h14v4"/><path d="M7 13V9h10v4"/><path d="M9 9V6h6v3"/></svg></span>
             <h3>Decks &amp; Porches</h3>
             <p>Sealing, staining, and painting that revives outdoor living spaces and fights the elements.</p>
           </article>
-
           <article class="card service-card reveal" data-reveal>
-            <span class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V5"/><path d="M20 20V5"/><path d="M4 8h16"/><path d="M4 13h16"/><path d="M12 5v15"/></svg>
-            </span>
+            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 20V5"/><path d="M20 20V5"/><path d="M4 8h16"/><path d="M4 13h16"/><path d="M12 5v15"/></svg></span>
             <h3>Railings &amp; Stairs</h3>
             <p>Metal railings and staircases stripped, primed, and recoated for a crisp, lasting look.</p>
           </article>
-
-          <article class="card service-card reveal" data-reveal>
-            <span class="svc-icon">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M13 21V9l6 3v9"/><path d="M8 9h.01M8 13h.01M8 17h.01"/></svg>
-            </span>
-            <h3>Commercial Painting</h3>
-            <p>Offices, retail, and multi-unit properties — completed on schedule with minimal disruption.</p>
-          </article>
-
           <a class="card service-card service-card--cta reveal" data-reveal href="#contact">
             <h3>Don't see your project?</h3>
             <p>Tell us what you have in mind — we'll put together a free, detailed estimate.</p>
@@ -281,39 +185,16 @@
       <div class="container">
         <div class="why-layout">
           <div class="why-intro reveal" data-reveal>
-            <p class="eyebrow"><span class="dot"></span> Why JM LUX</p>
-            <h2 class="section-title section-title--light">
-              The difference is in the prep — and the details.
-            </h2>
-            <p class="section-sub section-sub--light">
-              Anyone can roll paint on a wall. A finish that still looks sharp years
-              later comes from patient preparation, the right products, and a crew
-              that genuinely cares. That's what we bring to every job.
-            </p>
+            <p class="eyebrow eyebrow--light"><span class="dot"></span> Why JM LUX</p>
+            <h2 class="section-title section-title--light">The difference is in the prep — and the details.</h2>
+            <p class="section-sub section-sub--light">Anyone can roll paint on a wall. A finish that still looks sharp years later comes from patient preparation, the right products, and a crew that genuinely cares. That's what we bring to every job.</p>
             <a class="btn btn-gold" href="#contact">Start Your Project</a>
           </div>
-
           <ul class="why-grid">
-            <li class="why-item reveal" data-reveal>
-              <span class="why-num">01</span>
-              <h3>Meticulous Prep</h3>
-              <p>Patching, sanding, caulking, and masking done right before a drop of paint is applied.</p>
-            </li>
-            <li class="why-item reveal" data-reveal>
-              <span class="why-num">02</span>
-              <h3>Premium Materials</h3>
-              <p>Top-tier paints and coatings selected for durability, coverage, and a beautiful finish.</p>
-            </li>
-            <li class="why-item reveal" data-reveal>
-              <span class="why-num">03</span>
-              <h3>Clean &amp; Respectful</h3>
-              <p>Floors covered, fixtures protected, and the site left tidy at the end of every day.</p>
-            </li>
-            <li class="why-item reveal" data-reveal>
-              <span class="why-num">04</span>
-              <h3>On-Time, As Promised</h3>
-              <p>Clear timelines and honest communication — projects finished within the agreed window.</p>
-            </li>
+            <li class="why-item reveal" data-reveal><span class="why-num">01</span><h3>Meticulous Prep</h3><p>Patching, sanding, caulking, and masking done right before a drop of paint is applied.</p></li>
+            <li class="why-item reveal" data-reveal><span class="why-num">02</span><h3>Premium Materials</h3><p>Top-tier paints and coatings selected for durability, coverage, and a beautiful finish.</p></li>
+            <li class="why-item reveal" data-reveal><span class="why-num">03</span><h3>Clean &amp; Respectful</h3><p>Floors covered, fixtures protected, and the site left tidy at the end of every day.</p></li>
+            <li class="why-item reveal" data-reveal><span class="why-num">04</span><h3>On-Time, As Promised</h3><p>Clear timelines and honest communication — projects finished within the agreed window.</p></li>
           </ul>
         </div>
       </div>
@@ -322,36 +203,17 @@
     <!-- ============ ABOUT ============ -->
     <section class="section" id="about">
       <div class="container about-layout">
-        <div class="about-visual reveal" data-reveal aria-hidden="true">
+        <div class="about-visual reveal" data-reveal>
           <div class="about-frame">
-            <div class="about-room">
-              <span class="ar-wall"></span>
-              <span class="ar-accent"></span>
-              <span class="ar-floor"></span>
-              <span class="ar-window"></span>
-            </div>
+            <img src="assets/img/portfolio/stone-fireplace-family-room.jpg" alt="Bright family room with a stone fireplace and freshly painted walls and ceiling" loading="lazy" />
           </div>
-          <div class="about-stat">
-            <strong>5.0★</strong>
-            <span>Average customer rating</span>
-          </div>
+          <div class="about-badge"><strong>5.0★</strong><span>Average customer rating</span></div>
         </div>
-
         <div class="about-copy reveal" data-reveal>
-          <p class="eyebrow eyebrow--dark"><span class="dot"></span> Our Story</p>
+          <p class="eyebrow"><span class="dot"></span> Our Story</p>
           <h2 class="section-title">Locally rooted, finish-obsessed.</h2>
-          <p>
-            JM LUX Painting was founded on a simple goal: to give homeowners and
-            business owners across Massachusetts a painting experience worth
-            recommending. No cut corners, no surprises — just clean lines,
-            rich color, and craftsmanship you can see up close.
-          </p>
-          <p>
-            Based in Lawrence and serving communities throughout the region, we've
-            built our reputation one careful brushstroke at a time. From cozy
-            living rooms to busy storefronts, we treat every space as if it were
-            our own.
-          </p>
+          <p>JM LUX Painting was founded on a simple goal: to give homeowners and business owners across Massachusetts a painting experience worth recommending. No cut corners, no surprises — just clean lines, rich color, and craftsmanship you can see up close.</p>
+          <p>Based in Lawrence and serving communities throughout the region, we've built our reputation one careful brushstroke at a time. From cozy living rooms to busy storefronts, we treat every space as if it were our own.</p>
           <ul class="about-points">
             <li><span class="check">✓</span> Residential &amp; commercial projects</li>
             <li><span class="check">✓</span> Free, detailed written estimates</li>
@@ -363,34 +225,17 @@
     </section>
 
     <!-- ============ PROCESS ============ -->
-    <section class="section section--cream" id="process">
+    <section class="section section--cloud" id="process">
       <div class="container">
         <header class="section-head reveal" data-reveal>
-          <p class="eyebrow eyebrow--dark"><span class="dot"></span> How It Works</p>
+          <p class="eyebrow"><span class="dot"></span> How It Works</p>
           <h2 class="section-title">Four simple steps to a fresh space</h2>
         </header>
-
         <ol class="process">
-          <li class="process-step reveal" data-reveal>
-            <span class="process-num">1</span>
-            <h3>Free Estimate</h3>
-            <p>We visit, listen to your goals, and provide a clear, written quote — no obligation.</p>
-          </li>
-          <li class="process-step reveal" data-reveal>
-            <span class="process-num">2</span>
-            <h3>Color &amp; Prep</h3>
-            <p>We help finalize colors, then protect and prepare every surface for a perfect base.</p>
-          </li>
-          <li class="process-step reveal" data-reveal>
-            <span class="process-num">3</span>
-            <h3>Flawless Finish</h3>
-            <p>Skilled application, crisp edges, and even coats that bring the space to life.</p>
-          </li>
-          <li class="process-step reveal" data-reveal>
-            <span class="process-num">4</span>
-            <h3>Final Walkthrough</h3>
-            <p>We review every detail together and don't call it done until you're delighted.</p>
-          </li>
+          <li class="process-step reveal" data-reveal><span class="process-num">1</span><h3>Free Estimate</h3><p>We visit, listen to your goals, and provide a clear, written quote — no obligation.</p></li>
+          <li class="process-step reveal" data-reveal><span class="process-num">2</span><h3>Color &amp; Prep</h3><p>We help finalize colors, then protect and prepare every surface for a perfect base.</p></li>
+          <li class="process-step reveal" data-reveal><span class="process-num">3</span><h3>Flawless Finish</h3><p>Skilled application, crisp edges, and even coats that bring the space to life.</p></li>
+          <li class="process-step reveal" data-reveal><span class="process-num">4</span><h3>Final Walkthrough</h3><p>We review every detail together and don't call it done until you're delighted.</p></li>
         </ol>
       </div>
     </section>
@@ -398,34 +243,103 @@
     <!-- ============ GALLERY ============ -->
     <section class="section" id="gallery">
       <div class="container">
-        <header class="section-head reveal" data-reveal>
-          <p class="eyebrow eyebrow--dark"><span class="dot"></span> The Lux Palette</p>
-          <h2 class="section-title">Colors we love to work with</h2>
-          <p class="section-sub">
-            A peek at the curated, hand-matched tones we bring to recent projects —
-            balanced, timeless, and made to suit your space.
-          </p>
+        <header class="section-head section-head--center reveal" data-reveal>
+          <p class="eyebrow"><span class="dot"></span> Our Work</p>
+          <h2 class="section-title">Recent projects</h2>
+          <p class="section-sub">A look at real JM LUX projects across the Merrimack Valley — homes, accent walls, exteriors, and commercial spaces. Tap any photo to view it larger.</p>
         </header>
 
-        <div class="gallery">
-          <figure class="tile reveal" data-reveal style="--a:#1f2a37;--b:#34465c">
-            <figcaption><strong>Midnight Study</strong><span>Living Room · Interior</span></figcaption>
-          </figure>
-          <figure class="tile tile--wide reveal" data-reveal style="--a:#cdb892;--b:#e9ddc4">
-            <figcaption><strong>Warm Greige</strong><span>Open Plan · Walls &amp; Trim</span></figcaption>
-          </figure>
-          <figure class="tile reveal" data-reveal style="--a:#7d8b7a;--b:#9fb09b">
-            <figcaption><strong>Sage Retreat</strong><span>Bedroom · Accent Wall</span></figcaption>
-          </figure>
-          <figure class="tile reveal" data-reveal style="--a:#f3ede1;--b:#ffffff">
-            <figcaption class="fig-dark"><strong>Gallery White</strong><span>Kitchen · Cabinets</span></figcaption>
-          </figure>
-          <figure class="tile reveal" data-reveal style="--a:#b8893b;--b:#d9ab5b">
-            <figcaption><strong>Brushed Brass</strong><span>Foyer · Specialty Finish</span></figcaption>
-          </figure>
-          <figure class="tile tile--wide reveal" data-reveal style="--a:#3a2f2a;--b:#6b574c">
-            <figcaption><strong>Walnut Stain</strong><span>Staircase · Railings</span></figcaption>
-          </figure>
+        <div class="gallery-filters reveal" data-reveal data-filters>
+          <button class="filter-btn is-active" data-filter="all">All Work</button>
+          <button class="filter-btn" data-filter="interior">Interior</button>
+          <button class="filter-btn" data-filter="exterior">Exterior</button>
+          <button class="filter-btn" data-filter="commercial">Commercial</button>
+        </div>
+
+        <div class="gallery" data-gallery>
+          <button class="shot wide" data-cat="interior" data-full="assets/img/portfolio/navy-vaulted-great-room.jpg" data-cap="Vaulted Great Room — deep navy walls &amp; beamed ceiling">
+            <img src="assets/img/portfolio/navy-vaulted-great-room.jpg" alt="Great room with deep navy walls and a white vaulted, beamed ceiling" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Vaulted Great Room</strong><span class="tag">Interior</span></span>
+          </button>
+
+          <button class="shot tall" data-cat="commercial" data-full="assets/img/portfolio/epoxy-entry.jpg" data-cap="Commercial entry — teal accent wall &amp; metallic epoxy floor">
+            <img src="assets/img/portfolio/epoxy-entry.jpg" alt="Commercial entry with a teal accent wall and metallic epoxy floor" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Entry &amp; Epoxy Floor</strong><span class="tag">Commercial</span></span>
+          </button>
+
+          <button class="shot" data-cat="interior" data-full="assets/img/portfolio/teal-dining-room.jpg" data-cap="Accent dining room — teal-blue feature wall">
+            <img src="assets/img/portfolio/teal-dining-room.jpg" alt="Dining room with a teal-blue accent wall, white trim and chandelier" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Accent Dining Room</strong><span class="tag">Interior</span></span>
+          </button>
+
+          <button class="shot tall" data-cat="exterior" data-full="assets/img/portfolio/brick-exterior.jpg" data-cap="Multi-story brick exterior repaint">
+            <img src="assets/img/portfolio/brick-exterior.jpg" alt="Multi-story brick building exterior" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Brick Exterior</strong><span class="tag">Exterior</span></span>
+          </button>
+
+          <button class="shot" data-cat="interior" data-full="assets/img/portfolio/two-tone-kitchen.jpg" data-cap="Two-tone kitchen — white cabinetry &amp; soft mauve walls">
+            <img src="assets/img/portfolio/two-tone-kitchen.jpg" alt="Kitchen with white cabinetry and a soft mauve painted wall" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Two-Tone Kitchen</strong><span class="tag">Interior</span></span>
+          </button>
+
+          <button class="shot" data-cat="interior" data-full="assets/img/portfolio/chandelier-dining.jpg" data-cap="Elegant dining room with smooth painted ceiling">
+            <img src="assets/img/portfolio/chandelier-dining.jpg" alt="Dining room with chandelier and smooth painted ceiling" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Elegant Dining</strong><span class="tag">Interior</span></span>
+          </button>
+
+          <button class="shot" data-cat="commercial" data-full="assets/img/portfolio/commercial-exterior.jpg" data-cap="Large commercial building exterior">
+            <img src="assets/img/portfolio/commercial-exterior.jpg" alt="Large commercial building exterior" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Commercial Exterior</strong><span class="tag">Commercial</span></span>
+          </button>
+
+          <button class="shot" data-cat="interior" data-full="assets/img/portfolio/open-living-space.jpg" data-cap="Freshly painted open living space">
+            <img src="assets/img/portfolio/open-living-space.jpg" alt="Freshly painted open living space with hardwood floors" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Open Living Space</strong><span class="tag">Interior</span></span>
+          </button>
+
+          <button class="shot" data-cat="commercial" data-full="assets/img/portfolio/commercial-columns.jpg" data-cap="Commercial interior — freshly coated columns">
+            <img src="assets/img/portfolio/commercial-columns.jpg" alt="Commercial interior with freshly coated structural columns" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Commercial Space</strong><span class="tag">Commercial</span></span>
+          </button>
+
+          <button class="shot" data-cat="interior" data-full="assets/img/portfolio/sage-room.jpg" data-cap="Soft sage interior repaint">
+            <img src="assets/img/portfolio/sage-room.jpg" alt="Room painted a soft sage green" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Sage Interior</strong><span class="tag">Interior</span></span>
+          </button>
+
+          <button class="shot" data-cat="exterior" data-full="assets/img/portfolio/brick-building.jpg" data-cap="Brick residential building exterior">
+            <img src="assets/img/portfolio/brick-building.jpg" alt="Brick residential building exterior repaint" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Exterior Repaint</strong><span class="tag">Exterior</span></span>
+          </button>
+
+          <button class="shot" data-cat="interior" data-full="assets/img/portfolio/bright-room.jpg" data-cap="Light &amp; bright interior">
+            <img src="assets/img/portfolio/bright-room.jpg" alt="Bright interior room with white walls" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Light &amp; Bright</strong><span class="tag">Interior</span></span>
+          </button>
+
+          <button class="shot" data-cat="interior" data-full="assets/img/portfolio/hardwood-room.jpg" data-cap="Freshly finished room with hardwood floors">
+            <img src="assets/img/portfolio/hardwood-room.jpg" alt="Empty room with clean white walls and hardwood floors" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Freshly Finished</strong><span class="tag">Interior</span></span>
+          </button>
+
+          <button class="shot" data-cat="interior" data-full="assets/img/portfolio/neutral-room.jpg" data-cap="Neutral painted interior with hardwood floor">
+            <img src="assets/img/portfolio/neutral-room.jpg" alt="Neutral painted room with hardwood floor" loading="lazy" />
+            <span class="zoom" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3M11 8v6M8 11h6"/></svg></span>
+            <span class="shot-cap"><strong>Neutral Interior</strong><span class="tag">Interior</span></span>
+          </button>
         </div>
       </div>
     </section>
@@ -433,37 +347,25 @@
     <!-- ============ REVIEWS ============ -->
     <section class="section section--ink" id="reviews">
       <div class="container">
-        <header class="section-head reveal" data-reveal>
-          <p class="eyebrow"><span class="dot"></span> Kind Words</p>
+        <header class="section-head section-head--center reveal" data-reveal>
+          <p class="eyebrow eyebrow--light"><span class="dot"></span> Kind Words</p>
           <h2 class="section-title section-title--light">Rated 5.0 by homeowners &amp; businesses</h2>
         </header>
-
         <div class="grid reviews-grid">
           <figure class="review reveal" data-reveal>
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>
-              The service was great. They were very professional — in and out,
-              100%. I'll definitely recommend them.
-            </blockquote>
-            <figcaption>Satisfied Homeowner · Lawrence, MA</figcaption>
+            <blockquote>The service was great. They were very professional — in and out, 100%. I'll definitely recommend them.</blockquote>
+            <figcaption><b>Satisfied Homeowner</b> · Lawrence, MA</figcaption>
           </figure>
-
           <figure class="review reveal" data-reveal>
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>
-              Extremely professional. The work was outstanding and completed within
-              the agreed time frame. Very happy with the results and would hire again!
-            </blockquote>
-            <figcaption>Repeat Client · Greater Boston</figcaption>
+            <blockquote>Extremely professional. The work was outstanding and completed within the agreed time frame. Very happy with the results and would hire again!</blockquote>
+            <figcaption><b>Repeat Client</b> · Greater Boston</figcaption>
           </figure>
-
           <figure class="review reveal" data-reveal>
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>
-              Clean, careful, and on time. They protected everything, kept the site
-              tidy, and the finish looks incredible. Couldn't be happier.
-            </blockquote>
-            <figcaption>Commercial Client · Merrimack Valley</figcaption>
+            <blockquote>Clean, careful, and on time. They protected everything, kept the site tidy, and the finish looks incredible. Couldn't be happier.</blockquote>
+            <figcaption><b>Commercial Client</b> · Merrimack Valley</figcaption>
           </figure>
         </div>
       </div>
@@ -477,8 +379,8 @@
           <p>Get a free, no-pressure estimate — most quotes within 24–48 hours.</p>
         </div>
         <div class="cta-actions">
-          <a class="btn btn-dark btn-lg" href="#contact">Request Estimate</a>
-          <a class="btn btn-outline-dark btn-lg" href="tel:+19783870562">978-387-0562</a>
+          <a class="btn btn-white btn-lg" href="#contact">Request Estimate</a>
+          <a class="btn btn-outline-light btn-lg" href="tel:+19783870562">978-387-0562</a>
         </div>
       </div>
     </section>
@@ -487,83 +389,46 @@
     <section class="section" id="contact">
       <div class="container contact-layout">
         <div class="contact-info reveal" data-reveal>
-          <p class="eyebrow eyebrow--dark"><span class="dot"></span> Get In Touch</p>
+          <p class="eyebrow"><span class="dot"></span> Get In Touch</p>
           <h2 class="section-title">Let's talk about your project</h2>
-          <p class="section-sub">
-            Tell us a little about what you have in mind and we'll get back to you
-            with a free estimate. Prefer to talk? Give us a call.
-          </p>
-
+          <p class="section-sub">Tell us a little about what you have in mind and we'll get back to you with a free estimate. Prefer to talk? Give us a call.</p>
           <ul class="contact-list">
             <li>
-              <span class="ci-ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              </span>
+              <span class="ci-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
               <div><span class="ci-label">Phone</span><a href="tel:+19783870562">978-387-0562</a></div>
             </li>
             <li>
-              <span class="ci-ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-              </span>
+              <span class="ci-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
               <div><span class="ci-label">Email</span><a href="mailto:jmluxpainting@gmail.com">jmluxpainting@gmail.com</a></div>
             </li>
             <li>
-              <span class="ci-ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-              </span>
+              <span class="ci-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
               <div><span class="ci-label">Studio</span><span>226 Common St #406, Lawrence, MA 01840</span></div>
             </li>
             <li>
-              <span class="ci-ico" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-              </span>
+              <span class="ci-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
               <div><span class="ci-label">Hours</span><span>Mon–Sat · 7:00am – 5:00pm</span></div>
             </li>
           </ul>
-
           <div class="social-row">
-            <a href="https://www.facebook.com/JMluxpainting/" target="_blank" rel="noopener" aria-label="JM LUX Painting on Facebook" class="social-link">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg>
-            </a>
-            <a href="https://www.instagram.com/jmluxpainting/" target="_blank" rel="noopener" aria-label="JM LUX Painting on Instagram" class="social-link">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-            </a>
+            <a href="https://www.facebook.com/JMluxpainting/" target="_blank" rel="noopener" aria-label="JM LUX Painting on Facebook" class="social-link"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.78-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12z"/></svg></a>
+            <a href="https://www.instagram.com/jmluxpainting/" target="_blank" rel="noopener" aria-label="JM LUX Painting on Instagram" class="social-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
           </div>
         </div>
 
         <form class="contact-form card reveal" data-reveal data-contact-form novalidate>
-          <div class="field">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" autocomplete="name" required placeholder="Jane Doe" />
-          </div>
+          <div class="field"><label for="name">Name</label><input type="text" id="name" name="name" autocomplete="name" required placeholder="Jane Doe" /></div>
           <div class="field-row">
-            <div class="field">
-              <label for="email">Email</label>
-              <input type="email" id="email" name="email" autocomplete="email" required placeholder="jane@email.com" />
-            </div>
-            <div class="field">
-              <label for="phone">Phone</label>
-              <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(978) 555-0123" />
-            </div>
+            <div class="field"><label for="email">Email</label><input type="email" id="email" name="email" autocomplete="email" required placeholder="jane@email.com" /></div>
+            <div class="field"><label for="phone">Phone</label><input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(978) 555-0123" /></div>
           </div>
           <div class="field">
             <label for="service">Project type</label>
             <select id="service" name="service">
-              <option value="Interior Painting">Interior Painting</option>
-              <option value="Exterior Painting">Exterior Painting</option>
-              <option value="Cabinet Refinishing">Cabinet Refinishing</option>
-              <option value="Wood Staining">Wood Staining</option>
-              <option value="Specialty Finishes">Specialty Finishes</option>
-              <option value="Decks & Porches">Decks &amp; Porches</option>
-              <option value="Railings & Stairs">Railings &amp; Stairs</option>
-              <option value="Commercial Painting">Commercial Painting</option>
-              <option value="Other">Other</option>
+              <option>Interior Painting</option><option>Exterior Painting</option><option>Cabinet Refinishing</option><option>Wood Staining</option><option>Specialty Finishes</option><option>Decks &amp; Porches</option><option>Railings &amp; Stairs</option><option>Commercial Painting</option><option>Other</option>
             </select>
           </div>
-          <div class="field">
-            <label for="message">Project details</label>
-            <textarea id="message" name="message" rows="4" placeholder="Tell us about the space, rooms, square footage, timeline…"></textarea>
-          </div>
+          <div class="field"><label for="message">Project details</label><textarea id="message" name="message" rows="4" placeholder="Tell us about the space, rooms, square footage, timeline…"></textarea></div>
           <button type="submit" class="btn btn-gold btn-lg btn-block">Send My Request</button>
           <p class="form-note" data-form-note>We'll reply with a free estimate, usually within 24–48 hours.</p>
         </form>
@@ -575,51 +440,38 @@
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand">
-        <a class="brand brand--footer" href="#top">
-          <span class="brand-mark" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13v4H3z"/><path d="M16 9h3a2 2 0 0 1 2 2v1a2 2 0 0 1-2 2h-6"/><path d="M11 14v3a2 2 0 0 1-2 2H8a1 1 0 0 1-1-1v-4"/></svg>
-          </span>
-          <span class="brand-text">JM&nbsp;LUX<span class="brand-sub">Painting</span></span>
-        </a>
+        <img class="footer-logo" src="assets/img/logo.png" alt="JM LUX Painting Inc. logo" width="884" height="783" loading="lazy" />
         <p>A flawless finish for homes and businesses across Massachusetts. Free estimates, fully insured, finished with care.</p>
       </div>
-
       <div class="footer-col">
         <h4>Services</h4>
-        <ul>
-          <li><a href="#services">Interior Painting</a></li>
-          <li><a href="#services">Exterior Painting</a></li>
-          <li><a href="#services">Cabinet Refinishing</a></li>
-          <li><a href="#services">Commercial Painting</a></li>
-        </ul>
+        <ul><li><a href="#services">Interior Painting</a></li><li><a href="#services">Exterior Painting</a></li><li><a href="#services">Cabinet Refinishing</a></li><li><a href="#services">Commercial Painting</a></li></ul>
       </div>
-
       <div class="footer-col">
         <h4>Company</h4>
-        <ul>
-          <li><a href="#about">About Us</a></li>
-          <li><a href="#process">Our Process</a></li>
-          <li><a href="#gallery">Gallery</a></li>
-          <li><a href="#reviews">Reviews</a></li>
-        </ul>
+        <ul><li><a href="#about">About Us</a></li><li><a href="#process">Our Process</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#reviews">Reviews</a></li></ul>
       </div>
-
       <div class="footer-col">
         <h4>Contact</h4>
-        <ul>
-          <li><a href="tel:+19783870562">978-387-0562</a></li>
-          <li><a href="mailto:jmluxpainting@gmail.com">jmluxpainting@gmail.com</a></li>
-          <li>226 Common St #406<br />Lawrence, MA 01840</li>
-          <li>Mon–Sat · 7am–5pm</li>
-        </ul>
+        <ul><li><a href="tel:+19783870562">978-387-0562</a></li><li><a href="mailto:jmluxpainting@gmail.com">jmluxpainting@gmail.com</a></li><li>226 Common St #406<br />Lawrence, MA 01840</li><li>Mon–Sat · 7am–5pm</li></ul>
       </div>
     </div>
-
     <div class="container footer-bottom">
       <p>© <span data-year>2026</span> JM LUX Painting Inc. · Licensed &amp; Insured</p>
       <p class="footer-credit">Crafted with care in Massachusetts</p>
     </div>
   </footer>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div class="lightbox" data-lightbox aria-hidden="true" role="dialog" aria-modal="true" aria-label="Project image viewer">
+    <button class="lb-close" data-lb-close aria-label="Close viewer"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <div class="lb-stage">
+      <button class="lb-btn lb-prev" data-lb-prev aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg></button>
+      <img class="lb-img" data-lb-img src="" alt="" />
+      <button class="lb-btn lb-next" data-lb-next aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg></button>
+      <p class="lb-cap" data-lb-cap></p>
+    </div>
+  </div>
 
   <a class="back-to-top" href="#top" aria-label="Back to top" data-back-to-top>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>

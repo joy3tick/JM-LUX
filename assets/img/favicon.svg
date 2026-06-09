@@ -1,8 +1,28 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="14" fill="#15151a"/>
-  <g fill="none" stroke="#d9ab5b" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
-    <path d="M14 22h28v11H14z"/>
-    <path d="M42 26h7a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4H33"/>
-    <path d="M28 33v8a4 4 0 0 1-4 4 3 3 0 0 1-3-3v-8"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="64" x2="64" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#07875c"/>
+      <stop offset=".55" stop-color="#108a83"/>
+      <stop offset="1" stop-color="#3a86c4"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="#0c272e"/>
+  <g fill="url(#g)">
+    <!-- skyline -->
+    <rect x="29" y="12" width="6" height="20"/>
+    <rect x="37" y="16" width="5" height="16"/>
+    <rect x="22" y="18" width="5" height="14"/>
+    <!-- twin gabled rooftops -->
+    <path d="M16 36 L26 26 L36 36 Z"/>
+    <path d="M30 36 L40 26 L50 36 Z"/>
+  </g>
+  <g fill="url(#g)">
+    <!-- house bodies -->
+    <rect x="18" y="36" width="13" height="16"/>
+    <rect x="33" y="36" width="13" height="16"/>
+  </g>
+  <g fill="#0c272e">
+    <rect x="22" y="40" width="4" height="4"/>
+    <rect x="37" y="40" width="4" height="4"/>
   </g>
 </svg>

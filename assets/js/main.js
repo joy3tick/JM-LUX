@@ -4,16 +4,13 @@
 (function () {
   "use strict";
 
-  var root = document.documentElement;
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  /* ---------- sticky header ---------- */
+  /* ---------- sticky header + back-to-top ---------- */
   var header = document.querySelector("[data-header]");
+  var btt = document.querySelector("[data-back-to-top]");
   function onScroll() {
-    if (window.scrollY > 24) header.classList.add("is-stuck");
-    else header.classList.remove("is-stuck");
-
-    var btt = document.querySelector("[data-back-to-top]");
+    if (header) header.classList.toggle("is-stuck", window.scrollY > 24);
     if (btt) btt.classList.toggle("is-visible", window.scrollY > 600);
   }
   window.addEventListener("scroll", onScroll, { passive: true });
@@ -22,9 +19,9 @@
   /* ---------- mobile menu ---------- */
   var toggle = document.querySelector("[data-nav-toggle]");
   var mobileNav = document.querySelector("[data-mobile-nav]");
-
   function setMenu(open) {
     document.body.classList.toggle("menu-open", open);
+    if (!toggle) return;
     toggle.setAttribute("aria-expanded", String(open));
     toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   }
@@ -35,9 +32,6 @@
     mobileNav.addEventListener("click", function (e) {
       if (e.target.closest("a")) setMenu(false);
     });
-    document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape") setMenu(false);
-    });
   }
 
   /* ---------- scroll reveal ---------- */
@@ -47,84 +41,143 @@
   } else {
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          var el = entry.target;
-          // stagger siblings a touch for a polished cascade
-          var siblings = Array.prototype.slice.call(
-            (el.parentElement || document).querySelectorAll(":scope > [data-reveal]")
-          );
-          var i = siblings.indexOf(el);
-          el.style.transitionDelay = (i > 0 ? Math.min(i, 6) * 70 : 0) + "ms";
-          el.classList.add("is-in");
-          io.unobserve(el);
-        }
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        var siblings = Array.prototype.slice.call(
+          (el.parentElement || document).querySelectorAll(":scope > [data-reveal]")
+        );
+        var i = siblings.indexOf(el);
+        el.style.transitionDelay = (i > 0 ? Math.min(i, 6) * 70 : 0) + "ms";
+        el.classList.add("is-in");
+        io.unobserve(el);
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     reveals.forEach(function (el) { io.observe(el); });
   }
 
-  /* ---------- marquee: pause when off-screen for perf ---------- */
+  /* ---------- marquee: pause off-screen ---------- */
   var marquee = document.querySelector("[data-marquee]");
   if (marquee && "IntersectionObserver" in window && !prefersReduced) {
     var tracks = marquee.querySelectorAll(".marquee-track");
-    var mio = new IntersectionObserver(function (entries) {
+    new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
-        tracks.forEach(function (t) {
-          t.style.animationPlayState = e.isIntersecting ? "running" : "paused";
-        });
+        tracks.forEach(function (t) { t.style.animationPlayState = e.isIntersecting ? "running" : "paused"; });
       });
+    }).observe(marquee);
+  }
+
+  /* ---------- gallery filtering ---------- */
+  var filterBar = document.querySelector("[data-filters]");
+  var gallery = document.querySelector("[data-gallery]");
+  if (filterBar && gallery) {
+    var shots = Array.prototype.slice.call(gallery.querySelectorAll(".shot"));
+    filterBar.addEventListener("click", function (e) {
+      var btn = e.target.closest(".filter-btn");
+      if (!btn) return;
+      filterBar.querySelectorAll(".filter-btn").forEach(function (b) { b.classList.remove("is-active"); });
+      btn.classList.add("is-active");
+      var f = btn.getAttribute("data-filter");
+      shots.forEach(function (s) {
+        var show = f === "all" || s.getAttribute("data-cat") === f;
+        s.hidden = !show;
+      });
+      syncLightboxList();
     });
-    mio.observe(marquee);
+  }
+
+  /* ---------- lightbox ---------- */
+  var lb = document.querySelector("[data-lightbox]");
+  if (lb && gallery) {
+    var lbImg = lb.querySelector("[data-lb-img]");
+    var lbCap = lb.querySelector("[data-lb-cap]");
+    var allShots = Array.prototype.slice.call(gallery.querySelectorAll(".shot"));
+    var list = allShots.slice();   // currently-visible shots
+    var idx = 0;
+    var lastFocus = null;
+
+    function syncLightboxList() {
+      list = allShots.filter(function (s) { return !s.hidden; });
+    }
+    window.syncLightboxList = syncLightboxList; // referenced by filter handler
+
+    function render() {
+      var s = list[idx];
+      if (!s) return;
+      lbImg.src = s.getAttribute("data-full");
+      lbImg.alt = s.querySelector("img") ? s.querySelector("img").alt : "";
+      lbCap.textContent = s.getAttribute("data-cap") || "";
+    }
+    function open(shot) {
+      syncLightboxList();
+      idx = Math.max(0, list.indexOf(shot));
+      lastFocus = shot;
+      render();
+      lb.classList.add("is-open");
+      lb.setAttribute("aria-hidden", "false");
+      document.body.style.overflow = "hidden";
+    }
+    function close() {
+      lb.classList.remove("is-open");
+      lb.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
+      if (lastFocus) lastFocus.focus();
+    }
+    function step(d) {
+      if (!list.length) return;
+      idx = (idx + d + list.length) % list.length;
+      render();
+    }
+
+    gallery.addEventListener("click", function (e) {
+      var shot = e.target.closest(".shot");
+      if (shot) open(shot);
+    });
+    lb.querySelector("[data-lb-close]").addEventListener("click", close);
+    lb.querySelector("[data-lb-prev]").addEventListener("click", function () { step(-1); });
+    lb.querySelector("[data-lb-next]").addEventListener("click", function () { step(1); });
+    lb.addEventListener("click", function (e) { if (e.target === lb || e.target.classList.contains("lb-stage")) close(); });
+    document.addEventListener("keydown", function (e) {
+      if (!lb.classList.contains("is-open")) { if (e.key === "Escape") setMenu(false); return; }
+      if (e.key === "Escape") close();
+      else if (e.key === "ArrowLeft") step(-1);
+      else if (e.key === "ArrowRight") step(1);
+    });
   }
 
   /* ---------- current year ---------- */
   var yearEl = document.querySelector("[data-year]");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-  /* ---------- contact form -> mailto (works without a backend) ---------- */
+  /* ---------- contact form -> mailto ---------- */
   var form = document.querySelector("[data-contact-form]");
   var note = document.querySelector("[data-form-note]");
   var defaultNote = note ? note.textContent : "";
-
   function setNote(msg, state) {
     if (!note) return;
     note.textContent = msg;
     note.classList.remove("is-success", "is-error");
     if (state) note.classList.add(state);
   }
-
   if (form) {
     form.addEventListener("submit", function (e) {
       e.preventDefault();
-
       var data = new FormData(form);
       var name = (data.get("name") || "").toString().trim();
       var email = (data.get("email") || "").toString().trim();
       var phone = (data.get("phone") || "").toString().trim();
       var service = (data.get("service") || "").toString().trim();
       var message = (data.get("message") || "").toString().trim();
-
       if (!name || !email) {
         setNote("Please add your name and email so we can reach you.", "is-error");
         return;
       }
-
       var subject = "Estimate request — " + service + " (" + name + ")";
-      var bodyLines = [
-        "Name: " + name,
-        "Email: " + email,
-        "Phone: " + (phone || "—"),
-        "Project type: " + service,
-        "",
-        "Details:",
-        message || "—"
-      ];
-      var href =
-        "mailto:jmluxpainting@gmail.com" +
-        "?subject=" + encodeURIComponent(subject) +
-        "&body=" + encodeURIComponent(bodyLines.join("\n"));
-
-      window.location.href = href;
+      var body = [
+        "Name: " + name, "Email: " + email, "Phone: " + (phone || "—"),
+        "Project type: " + service, "", "Details:", message || "—"
+      ].join("\n");
+      window.location.href = "mailto:jmluxpainting@gmail.com?subject=" +
+        encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
       setNote("Opening your email app… if nothing happens, email jmluxpainting@gmail.com directly.", "is-success");
       form.reset();
       window.setTimeout(function () { setNote(defaultNote); }, 9000);

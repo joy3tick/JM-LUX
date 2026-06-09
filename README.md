@@ -3,16 +3,20 @@
 A modern, fast, fully responsive marketing site for **JM LUX Painting Inc.**, a
 residential & commercial painting company serving Massachusetts.
 
-This is a clean-room redesign: a single-page experience with a luxury-leaning
-look (charcoal + brass + cream), smooth scroll-reveal animations, and a
-contact form — built as a static site with **no build step and no dependencies**.
+A single-page experience built around the company's brand identity — the
+**emerald → teal → steel-blue gradient** pulled straight from the JM LUX logo —
+with a full-bleed photo hero, a filterable project gallery with a lightbox,
+smooth scroll-reveal animations, and a contact form. Built as a static site
+with **no build step and no dependencies**.
 
 ## Highlights
 
+- **On-brand palette** — colors sampled directly from the logo (`#07875c → #0f8a83 → #3a86c4`), applied as design tokens in `:root`.
+- **Real project photography** — the client's own portfolio photos, optimized for web and used in the hero, About, and a filterable gallery (Interior / Exterior / Commercial) with a keyboard-accessible lightbox.
 - **Zero build tooling** — plain HTML, CSS, and vanilla JS. Open `index.html` and it works.
 - **Fully responsive** — refined layouts from large desktops down to small phones, with an animated mobile menu.
 - **Accessible** — semantic landmarks, skip link, keyboard-friendly focus states, `aria` labels, and `prefers-reduced-motion` support.
-- **Performance-minded** — system-friendly fonts, lightweight SVG icons (no icon library), IntersectionObserver reveals, and an off-screen-paused marquee.
+- **Performance-minded** — every photo resized & compressed (~2.5 MB total page weight), lazy-loaded images, lightweight SVG icons, and an off-screen-paused marquee.
 - **SEO ready** — descriptive metadata, Open Graph tags, and `LocalBusiness` JSON-LD structured data.
 - **Working contact form** — composes a pre-filled email via `mailto:` so it functions on any static host (swap in a form backend later if desired — see below).
 
@@ -20,13 +24,20 @@ contact form — built as a static site with **no build step and no dependencies
 
 ```
 .
-├── index.html              # All sections (hero, services, about, process, gallery, reviews, contact)
+├── index.html                  # All sections (hero, services, about, process, gallery, reviews, contact)
 ├── assets/
-│   ├── css/styles.css      # Design tokens + components + responsive rules
-│   ├── js/main.js          # Header, mobile menu, reveals, marquee, form
-│   └── img/favicon.svg     # Brand mark
+│   ├── css/styles.css          # Brand tokens + components + responsive rules
+│   ├── js/main.js              # Header, mobile menu, reveals, marquee, gallery filter, lightbox, form
+│   └── img/
+│       ├── logo.png            # JM LUX logo (used in header + footer)
+│       ├── favicon.svg         # Brand mark (gradient house + skyline)
+│       ├── hero.jpg            # Full-bleed hero (vaulted great room)
+│       └── portfolio/          # Optimized project photos used in the gallery
 └── README.md
 ```
+
+> The original full-resolution uploads remain in git history; the versions under
+> `assets/img/` are web-optimized (resized + recompressed) for fast loading.
 
 ## Run locally
 
