@@ -362,6 +362,97 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 
 /* =====================================================================
+   Atelier — abstract, on-brand decorative system
+   Editorial eyebrows · ambient gradient blooms · paint-stroke motifs ·
+   fine grain · gradient hairlines. Everything here is decorative and
+   aria-hidden; motion is disabled under prefers-reduced-motion.
+   ===================================================================== */
+
+/* sections become positioning contexts so decor can sit behind content */
+.section { position: relative; overflow: clip; }
+.section > .container { position: relative; z-index: 1; }
+.hero .hero-inner { z-index: 2; }
+
+/* ---- editorial eyebrow / kicker ---- */
+.eyebrow {
+  display: inline-flex; align-items: center; gap: .7rem;
+  margin-bottom: 1.1rem;
+  font-family: var(--font-sans);
+  font-size: .72rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--text-soft);
+}
+.eyebrow::before {
+  content: ""; flex: none; width: 30px; height: 6px; border-radius: 999px;
+  background: var(--brand-grad);
+  box-shadow: 0 6px 16px -6px rgba(15,138,131,.7);
+}
+.eyebrow .num {
+  font-family: var(--font-display); font-style: italic; font-size: .98rem; letter-spacing: 0;
+  background: var(--brand-grad); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.eyebrow--light { color: rgba(255,255,255,.62); }
+.eyebrow--light .num {
+  background: var(--brand-grad-soft); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.section-head--center .eyebrow { justify-content: center; }
+.hero .eyebrow { color: rgba(255,255,255,.88); text-shadow: 0 1px 12px rgba(0,0,0,.45); }
+
+/* ---- ambient gradient blooms ---- */
+.bloom {
+  position: absolute; z-index: 0; border-radius: 50%;
+  filter: blur(72px); opacity: .55; pointer-events: none;
+  will-change: transform;
+  animation: bloom-drift 19s var(--ease) infinite alternate;
+}
+.bloom--green { background: radial-gradient(circle at 50% 50%, rgba(10,149,104,.55), transparent 70%); }
+.bloom--teal  { background: radial-gradient(circle at 50% 50%, rgba(20,152,143,.52), transparent 70%); }
+.bloom--blue  { background: radial-gradient(circle at 50% 50%, rgba(74,147,207,.5),  transparent 70%); }
+.section--ink .bloom { opacity: .42; filter: blur(86px); }
+
+.bloom--tl { top: -10%; left: -8%;  width: 40vw; height: 40vw; max-width: 540px; max-height: 540px; }
+.bloom--tr { top: -12%; right: -6%; width: 34vw; height: 34vw; max-width: 480px; max-height: 480px; animation-delay: -7s; }
+.bloom--br { right: -8%; bottom: -14%; width: 44vw; height: 44vw; max-width: 620px; max-height: 620px; animation-delay: -11s; }
+.bloom--bl { left: -8%;  bottom: -16%; width: 38vw; height: 38vw; max-width: 520px; max-height: 520px; animation-delay: -4s; }
+
+@keyframes bloom-drift {
+  from { transform: translate3d(0,0,0) scale(1); }
+  to   { transform: translate3d(2.4rem,-1.8rem,0) scale(1.14); }
+}
+
+/* ---- abstract paint-stroke motif ---- */
+.stroke-art { position: absolute; z-index: 0; pointer-events: none; opacity: .5; }
+.stroke-art path { fill: none; stroke-linecap: round; }
+.stroke-art--why { top: -6%; right: -10%; width: clamp(280px, 38vw, 520px); opacity: .55; }
+.stroke-art--cta { right: -6%; top: -40%; width: clamp(260px, 34vw, 460px); opacity: .5; }
+.cta-banner .cta-inner { z-index: 1; }
+
+/* ---- fine grain overlay (tactile, premium) ---- */
+.grain {
+  position: fixed; inset: 0; z-index: 300; pointer-events: none;
+  opacity: .05; mix-blend-mode: soft-light;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.86' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 220px 220px;
+}
+
+/* ---- footer: gradient hairline + faint house-mark watermark ---- */
+.site-footer { position: relative; overflow: clip; }
+.site-footer::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--teal) 30%, var(--blue) 70%, transparent);
+  opacity: .55;
+}
+.footer-mark {
+  position: absolute; right: -3%; top: 50%; transform: translateY(-50%);
+  width: clamp(220px, 26vw, 380px); z-index: 0;
+  opacity: .06; pointer-events: none;
+}
+.site-footer .container { position: relative; z-index: 1; }
+
+@media (prefers-reduced-motion: reduce) {
+  .bloom { animation: none; }
+}
+
+/* =====================================================================
    responsive
    ===================================================================== */
 @media (max-width: 1024px) {
@@ -392,4 +483,7 @@ body.menu-open .mobile-nav { transform: translateY(0); }
   .cta-actions { width: 100%; }
   .cta-actions .btn { flex: 1 1 auto; }
   .brand-logo { height: 46px; }
+  .bloom { filter: blur(54px); opacity: .42; }
+  .stroke-art { opacity: .32; }
+  .grain { opacity: .035; }
 }
