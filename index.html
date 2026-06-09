@@ -37,6 +37,19 @@
   </script>
 </head>
 <body>
+  <!-- ============ PAGE LOAD CURTAIN ============ -->
+  <div class="page-loader" data-loader aria-hidden="true">
+    <div class="page-loader__inner">
+      <img class="page-loader__logo" src="assets/img/logo.png" alt="" width="884" height="783" />
+      <span class="page-loader__bar"><span class="page-loader__fill"></span></span>
+    </div>
+  </div>
+
+  <!-- ============ SCROLL PROGRESS + BESPOKE CURSOR ============ -->
+  <div class="scroll-progress" data-scroll-progress aria-hidden="true"></div>
+  <div class="cursor-ring" data-cursor-ring aria-hidden="true"></div>
+  <div class="cursor-dot" data-cursor-dot aria-hidden="true"></div>
+
   <a class="skip-link" href="#main">Skip to content</a>
 
   <!-- ============ HEADER ============ -->
@@ -63,7 +76,7 @@
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
           <span>978-387-0562</span>
         </a>
-        <a class="btn btn-gold btn-sm header-cta" href="#contact">Free Estimate</a>
+        <a class="btn btn-gold btn-sm header-cta" href="#contact" data-magnetic>Free Estimate</a>
         <button class="nav-toggle" data-nav-toggle aria-label="Open menu" aria-expanded="false" aria-controls="mobile-nav">
           <span></span><span></span><span></span>
         </button>
@@ -98,8 +111,8 @@
           that treats your space like its own.
         </p>
         <div class="hero-cta reveal" data-reveal>
-          <a class="btn btn-gold btn-lg" href="#contact">Get a Free Estimate</a>
-          <a class="btn btn-ghost btn-lg" href="tel:+19783870562">
+          <a class="btn btn-gold btn-lg" href="#contact" data-magnetic>Get a Free Estimate</a>
+          <a class="btn btn-ghost btn-lg" href="tel:+19783870562" data-magnetic>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
             Call Now
           </a>
@@ -200,13 +213,13 @@
     <!-- ============ ABOUT ============ -->
     <section class="section" id="about">
       <div class="container about-layout">
-        <div class="about-visual reveal" data-reveal>
-          <div class="about-frame">
+        <div class="about-visual reveal" data-reveal="left">
+          <div class="about-frame" data-parallax data-speed="-0.06">
             <img src="assets/img/portfolio/stone-fireplace-family-room.jpg" alt="Bright family room with a stone fireplace and freshly painted walls and ceiling" loading="lazy" />
           </div>
-          <div class="about-badge"><strong>5.0★</strong><span>Average customer rating</span></div>
+          <div class="about-badge" data-parallax data-speed="0.08"><strong data-count="5" data-decimals="1" data-suffix="★">0.0★</strong><span>Average customer rating</span></div>
         </div>
-        <div class="about-copy reveal" data-reveal>
+        <div class="about-copy reveal" data-reveal="right">
           <h2 class="section-title">Locally rooted, finish-obsessed.</h2>
           <p>JM LUX Painting was founded on a simple goal: to give homeowners and business owners across Massachusetts a painting experience worth recommending. No cut corners, no surprises — just clean lines, rich color, and craftsmanship you can see up close.</p>
           <p>Based in Lawrence and serving communities throughout the region, we've built our reputation one careful brushstroke at a time. From cozy living rooms to busy storefronts, we treat every space as if it were our own.</p>
@@ -372,8 +385,8 @@
           <p>Get a free, no-pressure estimate — most quotes within 24–48 hours.</p>
         </div>
         <div class="cta-actions">
-          <a class="btn btn-white btn-lg" href="#contact">Request Estimate</a>
-          <a class="btn btn-outline-light btn-lg" href="tel:+19783870562">978-387-0562</a>
+          <a class="btn btn-white btn-lg" href="#contact" data-magnetic>Request Estimate</a>
+          <a class="btn btn-outline-light btn-lg" href="tel:+19783870562" data-magnetic>978-387-0562</a>
         </div>
       </div>
     </section>

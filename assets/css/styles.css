@@ -35,6 +35,8 @@
   --shadow:    0 18px 50px -22px rgba(12,39,46,.4);
   --shadow-lg: 0 40px 90px -40px rgba(12,39,46,.55);
   --ease: cubic-bezier(.22,.61,.36,1);
+  --ease-out: cubic-bezier(.16,1,.3,1);      /* long, expensive-feeling deceleration */
+  --ease-spring: cubic-bezier(.34,1.56,.64,1); /* gentle overshoot for pops */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-display: "Fraunces", Georgia, "Times New Roman", serif;
 }
@@ -392,4 +394,152 @@ body.menu-open .mobile-nav { transform: translateY(0); }
   .cta-actions { width: 100%; }
   .cta-actions .btn { flex: 1 1 auto; }
   .brand-logo { height: 46px; }
+}
+
+/* =====================================================================
+   AGENCY MOTION LAYER
+   Cinematic, performance-minded polish. Everything below degrades to a
+   calm static state under (prefers-reduced-motion: reduce).
+   ===================================================================== */
+
+/* ---------- page-load curtain ---------- */
+.page-loader {
+  position: fixed; inset: 0; z-index: 1000; display: grid; place-items: center;
+  background: var(--ink);
+  transition: opacity .7s var(--ease-out), visibility .7s;
+  /* failsafe: lift the curtain even if JS never runs (and instantly under
+     reduced-motion, since the global rule collapses this duration) */
+  animation: loader-autohide 0s linear 4s forwards;
+}
+.page-loader__inner { display: grid; justify-items: center; gap: 1.5rem; }
+.page-loader__logo {
+  height: 92px; width: auto; filter: drop-shadow(0 12px 34px rgba(0,0,0,.45));
+  animation: loader-pulse 1.7s var(--ease-out) infinite;
+}
+.page-loader__bar { width: 184px; height: 3px; border-radius: 3px; background: rgba(255,255,255,.14); overflow: hidden; }
+.page-loader__fill {
+  display: block; height: 100%; width: 35%; border-radius: 3px; background: var(--brand-grad-soft);
+  animation: loader-fill 1.4s var(--ease-out) infinite;
+}
+@keyframes loader-pulse { 0%,100% { transform: scale(1); opacity: .9; } 50% { transform: scale(1.06); opacity: 1; } }
+@keyframes loader-fill  { 0% { transform: translateX(-130%); } 100% { transform: translateX(420%); } }
+@keyframes loader-autohide { to { opacity: 0; visibility: hidden; } }
+body.is-loaded .page-loader { opacity: 0; visibility: hidden; }
+
+/* ---------- scroll progress bar ---------- */
+.scroll-progress {
+  position: fixed; inset: 0 0 auto 0; height: 3px; z-index: 150;
+  background: var(--brand-grad-soft); transform: scaleX(0); transform-origin: 0 50%;
+  will-change: transform; pointer-events: none;
+  box-shadow: 0 0 14px rgba(15,138,131,.55);
+}
+
+/* ---------- bespoke cursor (fine-pointer devices only) ---------- */
+.cursor-dot, .cursor-ring {
+  position: fixed; top: 0; left: 0; z-index: 900; pointer-events: none; border-radius: 50%;
+  opacity: 0; mix-blend-mode: difference; will-change: transform;
+}
+.cursor-dot  { width: 7px; height: 7px; background: #fff; transition: opacity .3s var(--ease); }
+.cursor-ring {
+  width: 36px; height: 36px; border: 1.5px solid rgba(255,255,255,.85);
+  transition: width .25s var(--ease-out), height .25s var(--ease-out),
+              opacity .3s var(--ease), background-color .25s var(--ease-out);
+}
+body.cursor-ready .cursor-dot, body.cursor-ready .cursor-ring { opacity: 1; }
+.cursor-ring.is-hot { width: 64px; height: 64px; background: rgba(255,255,255,.14); }
+.cursor-ring.is-down { width: 26px; height: 26px; }
+@media (hover: none), (pointer: coarse) { .cursor-dot, .cursor-ring { display: none; } }
+
+/* ---------- richer reveals + directional variants ---------- */
+.reveal {
+  opacity: 0; transform: translateY(28px); filter: blur(8px);
+  transition: opacity .9s var(--ease-out), transform .9s var(--ease-out), filter .9s var(--ease-out);
+  will-change: opacity, transform, filter;
+}
+.reveal.is-in { opacity: 1; transform: none; filter: none; }
+.reveal[data-reveal="left"]  { transform: translateX(-40px); }
+.reveal[data-reveal="right"] { transform: translateX(40px); }
+.reveal[data-reveal="scale"] { transform: scale(.92); }
+.reveal[data-reveal="up-lg"] { transform: translateY(52px); }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; filter: none; } }
+
+/* ---------- section title underline draw ---------- */
+.section-head .section-title { position: relative; }
+.section-head .section-title::after {
+  content: ""; display: block; height: 3px; width: 0; margin-top: .8rem; border-radius: 3px;
+  background: var(--brand-grad); transition: width 1.1s .25s var(--ease-out);
+}
+.section-head--center .section-title::after { margin-inline: auto; }
+.section--ink .section-head .section-title::after { background: var(--brand-grad-soft); }
+.section-head.is-in .section-title::after { width: 68px; }
+
+/* ---------- hero: slow cinematic drift + content parallax ---------- */
+.hero-img { animation: hero-drift 22s ease-in-out infinite alternate; transform-origin: 60% 40%; }
+@keyframes hero-drift { from { transform: scale(1.06); } to { transform: scale(1.16) translate3d(0, -1.5%, 0); } }
+.scroll-hint { transition: opacity .4s var(--ease); }
+
+/* ---------- animated brand gradients ---------- */
+.accent { background-size: 220% auto; animation: grad-pan 9s ease-in-out infinite; }
+.cta-banner {
+  background: linear-gradient(100deg, #07875c 0%, #0f8a83 34%, #3a86c4 64%, #0f8a83 100%);
+  background-size: 220% 100%; animation: grad-pan 16s ease-in-out infinite;
+}
+@keyframes grad-pan { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+/* ---------- scrollspy nav indicator ---------- */
+.nav-list a { position: relative; }
+.nav-list a::after {
+  content: ""; position: absolute; left: 50%; right: 50%; bottom: .28rem; height: 2px; border-radius: 2px;
+  background: var(--brand-grad); transition: left .35s var(--ease-out), right .35s var(--ease-out), opacity .35s var(--ease);
+  opacity: 0;
+}
+.nav-list a.is-current::after { left: .8rem; right: .8rem; opacity: 1; }
+.site-header .nav-list a.is-current { color: #fff; }
+.site-header.is-stuck .nav-list a.is-current { color: var(--ink); }
+
+/* ---------- buttons: light sheen on hover ---------- */
+.btn { position: relative; overflow: hidden; isolation: isolate; }
+.btn::after {
+  content: ""; position: absolute; top: 0; left: -150%; width: 70%; height: 100%; z-index: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255,255,255,.38) 50%, transparent 100%);
+  transform: skewX(-18deg); transition: left .75s var(--ease-out); pointer-events: none;
+}
+.btn:hover::after { left: 165%; }
+
+/* ---------- service cards: cursor spotlight + 3D tilt ---------- */
+.services-grid { perspective: 1100px; }
+.service-card { position: relative; overflow: hidden; transform-style: preserve-3d; }
+.service-card > * { position: relative; z-index: 1; }
+.service-card:not(.service-card--cta)::before {
+  content: ""; position: absolute; inset: 0; z-index: 0; border-radius: inherit; pointer-events: none;
+  background: radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), rgba(15,138,131,.16), transparent 62%);
+  opacity: 0; transition: opacity .4s var(--ease);
+}
+.service-card:hover::before { opacity: 1; }
+.svc-icon { transition: transform .4s var(--ease-spring); }
+.service-card:hover .svc-icon { transform: translateY(-2px) scale(1.08) rotate(-3deg); }
+
+/* ---------- soft gradient orbs for depth on dark sections ---------- */
+.section--ink { position: relative; overflow: hidden; }
+.section--ink > .container { position: relative; z-index: 1; }
+.section--ink::before, .section--ink::after {
+  content: ""; position: absolute; border-radius: 50%; pointer-events: none; z-index: 0;
+  background: radial-gradient(circle, rgba(15,138,131,.22), transparent 65%);
+  will-change: transform;
+}
+.section--ink::before { width: 540px; height: 540px; top: -180px; right: -140px; }
+.section--ink::after  { width: 420px; height: 420px; bottom: -200px; left: -120px;
+  background: radial-gradient(circle, rgba(58,134,196,.2), transparent 65%); }
+
+/* ---------- gallery: crossfade + stagger on filter ---------- */
+.gallery .shot { transition: transform .55s var(--ease-out), box-shadow .35s var(--ease), opacity .55s var(--ease-out); }
+.gallery.is-switching .shot { opacity: 0; transform: translateY(14px) scale(.97); }
+
+/* ---------- count-up numerals don't reflow as digits change ---------- */
+[data-count] { font-variant-numeric: tabular-nums; }
+
+/* ---------- reduced-motion: silence the ambient loops ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .hero-img, .accent, .cta-banner, .page-loader__logo, .page-loader__fill { animation: none !important; }
+  .cursor-dot, .cursor-ring { display: none; }
 }
