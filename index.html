@@ -17,7 +17,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="assets/css/styles.css?v=7" />
+  <link rel="stylesheet" href="assets/css/styles.css?v=8" />
 
   <script type="application/ld+json">
   {
@@ -82,33 +82,42 @@
 
   <main id="main">
     <!-- ============ HERO ============ -->
-    <section class="hero">
-      <img class="hero-img" src="assets/img/hero.jpg" alt="Vaulted great room with deep navy walls and a white beamed ceiling painted by JM LUX" fetchpriority="high" />
-      <div class="hero-overlay" aria-hidden="true"></div>
-      <span class="geo geo--ring anim-spin" style="width:360px;height:360px;top:-110px;right:-90px" aria-hidden="true"></span>
-      <span class="geo geo--diamond anim-floatd" style="width:26px;height:26px;left:9%;bottom:24%" aria-hidden="true"></span>
-      <span class="geo geo--dots anim-float" style="width:120px;height:80px;left:5%;top:26%" aria-hidden="true"></span>
-      <div class="container hero-inner">
-        <h1 class="hero-title reveal" data-reveal>A fresh coat<br /><span class="accent">changes everything.</span></h1>
-        <p class="hero-lead reveal" data-reveal>
-          We're a local crew painting homes and businesses across Massachusetts.
-          We show up when we say we will, prep like it matters, and leave you with
-          walls worth showing off.
-        </p>
-        <div class="hero-cta reveal" data-reveal>
-          <a class="btn btn-gold btn-lg" href="contact.html">Get a Free Estimate</a>
-          <a class="btn btn-ghost btn-lg" href="tel:+19783870562">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-            Call Now
-          </a>
+    <section class="hero section--ink">
+      <span class="geo geo--ring anim-spin" style="width:340px;height:340px;top:-120px;right:-100px" aria-hidden="true"></span>
+      <span class="geo geo--diamond anim-floatd" style="width:24px;height:24px;left:46%;top:14%" aria-hidden="true"></span>
+      <span class="geo geo--dots anim-float" style="width:120px;height:80px;left:4%;bottom:10%" aria-hidden="true"></span>
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-copy">
+            <h1 class="hero-title reveal" data-reveal>A fresh coat<br /><span class="accent">changes everything.</span></h1>
+            <p class="hero-lead reveal" data-reveal>
+              We're a local crew painting homes and businesses across Massachusetts.
+              We show up when we say we will, prep like it matters, and leave you with
+              walls worth showing off.
+            </p>
+            <div class="hero-cta reveal" data-reveal>
+              <a class="btn btn-gold btn-lg" href="contact.html">Get a Free Estimate</a>
+              <a class="btn btn-ghost btn-lg" href="tel:+19783870562">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                Call Now
+              </a>
+            </div>
+            <ul class="hero-badges reveal" data-reveal>
+              <li><span class="check">✓</span> Fully Licensed &amp; Insured</li>
+              <li><span class="check">✓</span> Free Estimates, No Pressure</li>
+            </ul>
+          </div>
+          <div class="hero-media reveal" data-reveal>
+            <div class="hero-media-frame">
+              <img src="assets/img/hero.jpg" alt="Vaulted great room with deep navy walls and a white beamed ceiling painted by JM LUX" fetchpriority="high" />
+            </div>
+            <div class="hero-rating">
+              <strong>5.0 <span class="stars" aria-label="5 out of 5 stars">★★★★★</span></strong>
+              <span>Google rating from local clients</span>
+            </div>
+          </div>
         </div>
-        <ul class="hero-badges reveal" data-reveal>
-          <li><span class="stars" aria-label="5 out of 5 stars">★★★★★</span><span>5.0 Customer Rating</span></li>
-          <li><span class="check">✓</span> Fully Licensed &amp; Insured</li>
-          <li><span class="check">✓</span> Free Estimates, No Pressure</li>
-        </ul>
       </div>
-      <div class="scroll-hint" aria-hidden="true"><span class="line"></span>Scroll</div>
     </section>
 
     <!-- ============ MARQUEE ============ -->
@@ -145,19 +154,16 @@
 
         <div class="grid services-grid">
           <article class="card service-card reveal" data-reveal>
-            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7h13v5H3z"/><path d="M9.5 12v4a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-2"/><path d="M16 8h2a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2h-2"/></svg></span>
-            <h3>Interior Painting</h3>
-            <p>Walls, ceilings, and trim done smooth and even. It's the work we're known for.</p>
+            <div class="svc-media"><img src="assets/img/portfolio/sage-room.jpg" alt="Bedroom painted a soft sage green" loading="lazy" /></div>
+            <div class="svc-body"><h3>Interior Painting</h3><p>Walls, ceilings, and trim done smooth and even. It's the work we're known for.</p></div>
           </article>
           <article class="card service-card reveal" data-reveal>
-            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21h18"/><path d="M5 21V8l7-5 7 5v13"/><path d="M9 21v-6h6v6"/></svg></span>
-            <h3>Exterior Painting</h3>
-            <p>Siding, doors, and trim coated to handle New England weather and look sharp from the curb.</p>
+            <div class="svc-media"><img src="assets/img/portfolio/brick-building.jpg" alt="Brick residential building exterior repaint" loading="lazy" /></div>
+            <div class="svc-body"><h3>Exterior Painting</h3><p>Siding, doors, and trim coated to handle New England weather and look sharp from the curb.</p></div>
           </article>
           <article class="card service-card reveal" data-reveal>
-            <span class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="1"/><path d="M12 3v18"/><path d="M8 7.5v2"/><path d="M16 7.5v2"/></svg></span>
-            <h3>Cabinet Refinishing</h3>
-            <p>A brand-new look for your kitchen with a smooth, durable cabinet finish. No full remodel needed.</p>
+            <div class="svc-media"><img src="assets/img/portfolio/two-tone-kitchen.jpg" alt="Kitchen with refinished white cabinetry and soft mauve walls" loading="lazy" /></div>
+            <div class="svc-body"><h3>Cabinet Refinishing</h3><p>A brand-new look for your kitchen with a smooth, durable cabinet finish. No full remodel needed.</p></div>
           </article>
           <a class="card service-card service-card--cta reveal" data-reveal href="services.html">
             <h3>See all services</h3>
@@ -180,10 +186,10 @@
             <a class="btn btn-gold" href="contact.html">Start Your Project</a>
           </div>
           <ul class="why-grid">
-            <li class="why-item reveal" data-reveal><span class="why-num">01</span><h3>Prep Done Right</h3><p>Patching, sanding, caulking, and masking, all handled before a drop of paint goes on.</p></li>
-            <li class="why-item reveal" data-reveal><span class="why-num">02</span><h3>Quality Materials</h3><p>Top-shelf paints and coatings chosen for coverage, durability, and a rich-looking finish.</p></li>
-            <li class="why-item reveal" data-reveal><span class="why-num">03</span><h3>Clean &amp; Respectful</h3><p>Floors covered, fixtures protected, and everything tidied up at the end of each day.</p></li>
-            <li class="why-item reveal" data-reveal><span class="why-num">04</span><h3>On Time, As Promised</h3><p>Clear timelines and straight answers. When we say it'll be done, it's done.</p></li>
+            <li class="why-item reveal" data-reveal><h3>Prep Done Right</h3><p>Patching, sanding, caulking, and masking, all handled before a drop of paint goes on.</p></li>
+            <li class="why-item reveal" data-reveal><h3>Quality Materials</h3><p>Top-shelf paints and coatings chosen for coverage, durability, and a rich-looking finish.</p></li>
+            <li class="why-item reveal" data-reveal><h3>Clean &amp; Respectful</h3><p>Floors covered, fixtures protected, and everything tidied up at the end of each day.</p></li>
+            <li class="why-item reveal" data-reveal><h3>On Time, As Promised</h3><p>Clear timelines and straight answers. When we say it'll be done, it's done.</p></li>
           </ul>
         </div>
       </div>
@@ -198,21 +204,21 @@
         </header>
 
         <div class="work-teaser reveal" data-reveal>
-          <a class="work-thumb" href="gallery.html" aria-label="View the gallery">
+          <a class="work-thumb work-thumb--big" href="gallery.html" aria-label="View the gallery">
             <img src="assets/img/portfolio/navy-vaulted-great-room.jpg" alt="Great room with deep navy walls and a white vaulted, beamed ceiling" loading="lazy" />
-            <span>Vaulted Great Room</span>
+            <span class="work-cap"><strong>Vaulted Great Room</strong><span class="tag">Interior</span></span>
           </a>
-          <a class="work-thumb" href="gallery.html" aria-label="View the gallery">
-            <img src="assets/img/portfolio/two-tone-kitchen.jpg" alt="Kitchen with white cabinetry and a soft mauve painted wall" loading="lazy" />
-            <span>Two-Tone Kitchen</span>
-          </a>
-          <a class="work-thumb" href="gallery.html" aria-label="View the gallery">
+          <a class="work-thumb work-thumb--wide" href="gallery.html" aria-label="View the gallery">
             <img src="assets/img/portfolio/brick-exterior.jpg" alt="Multi-story brick building exterior" loading="lazy" />
-            <span>Brick Exterior</span>
+            <span class="work-cap"><strong>Brick Exterior</strong><span class="tag">Exterior</span></span>
+          </a>
+          <a class="work-thumb" href="gallery.html" aria-label="View the gallery">
+            <img src="assets/img/portfolio/open-living-space.jpg" alt="Freshly painted open living space with hardwood floors" loading="lazy" />
+            <span class="work-cap"><strong>Open Living Space</strong><span class="tag">Interior</span></span>
           </a>
           <a class="work-thumb" href="gallery.html" aria-label="View the gallery">
             <img src="assets/img/portfolio/epoxy-entry.jpg" alt="Commercial entry with a teal accent wall and metallic epoxy floor" loading="lazy" />
-            <span>Entry &amp; Epoxy Floor</span>
+            <span class="work-cap"><strong>Entry &amp; Epoxy Floor</strong><span class="tag">Commercial</span></span>
           </a>
         </div>
 
@@ -232,18 +238,33 @@
         <div class="grid reviews-grid">
           <figure class="review reveal" data-reveal>
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>The service was great. They were very professional, in and out, 100%. I'll definitely recommend them.</blockquote>
-            <figcaption><b>Satisfied Homeowner</b> · Lawrence, MA</figcaption>
+            <blockquote>Julio and his team were absolutely amazing! They were incredibly professional to work with from the time of the estimate to the finished product. Julio was very knowledgeable and asked all the right questions during the estimate.</blockquote>
+            <figcaption><b>Sofia DiStefano</b> · Google review</figcaption>
           </figure>
           <figure class="review reveal" data-reveal>
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>Extremely professional. The work was outstanding and completed within the agreed time frame. Very happy with the results and would hire again!</blockquote>
-            <figcaption><b>Repeat Client</b> · Greater Boston</figcaption>
+            <blockquote>We hired JM Lux Painting to paint the entire interior of our newly purchased home before we moved in. Julio and his team were amazing, did great work and are really nice people.</blockquote>
+            <figcaption><b>Laurie Schena</b> · Google review</figcaption>
           </figure>
           <figure class="review reveal" data-reveal>
             <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
-            <blockquote>Clean, careful, and on time. They protected everything, kept the site tidy, and the finish looks incredible. Couldn't be happier.</blockquote>
-            <figcaption><b>Commercial Client</b> · Merrimack Valley</figcaption>
+            <blockquote>This is the third time we have used him for different rooms in our house and he does an excellent job. He explains everything throughout the process and his work is exceptional. Thank you Julio!!</blockquote>
+            <figcaption><b>Paul Sal</b> · Google review</figcaption>
+          </figure>
+          <figure class="review reveal" data-reveal>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>Julio and his team went above and beyond when painting the interior of our house, and we're thrilled with the results. They did an amazing job with the walls, kitchen cabinets, bathroom vanity, and trim, down to the smallest details.</blockquote>
+            <figcaption><b>Julie Fiorilla</b> · Google review</figcaption>
+          </figure>
+          <figure class="review reveal" data-reveal>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>Julio provides exceptional painting services! Easy communication, early availability per our request and great-quality work for more than reasonable pricing.</blockquote>
+            <figcaption><b>Petr Soustal</b> · Google review</figcaption>
+          </figure>
+          <figure class="review reveal" data-reveal>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote>Julio and his crew did exceptional work. Very clean and neat. Nice men and very friendly. Will use them again!</blockquote>
+            <figcaption><b>Anna Salamanca</b> · Google review</figcaption>
           </figure>
         </div>
       </div>
