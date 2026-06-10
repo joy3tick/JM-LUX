@@ -220,14 +220,47 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 /* ---------- section base ---------- */
 .section { padding: clamp(4rem, 9vw, 6.5rem) 0; }
 .section--ink {
+  position: relative; isolation: isolate; overflow: hidden;
   background-color: var(--bg-deep);
-  background-image:
-    radial-gradient(55% 90% at 88% 0%, rgba(74,147,216,.06), transparent 60%),
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: auto, 54px 54px, 54px 54px;
   border-block: 1px solid var(--line-soft);
   color: var(--text);
+}
+
+/* ---------- animated paint-bleed background (replaces the old grid) ----------
+   Two blurred layers of brand teal/blue/green blobs that slowly drift like
+   paint dispersing in water. Transform-only animation, so it's GPU-cheap. */
+.section--ink::before, .section--ink::after,
+.page-hero::before, .page-hero::after {
+  content: ""; position: absolute; inset: -25%; z-index: -1;
+  background-repeat: no-repeat; pointer-events: none;
+  filter: blur(66px) saturate(135%);
+  will-change: transform;
+}
+.section--ink::before, .page-hero::before {
+  background:
+    radial-gradient(38% 42% at 30% 34%, rgba(17,154,144,.55), transparent 62%),
+    radial-gradient(36% 40% at 80% 62%, rgba(47,143,208,.50), transparent 62%);
+  opacity: .5;
+  animation: paint-a 34s ease-in-out infinite alternate;
+}
+.section--ink::after, .page-hero::after {
+  background:
+    radial-gradient(34% 38% at 72% 26%, rgba(74,147,216,.50), transparent 62%),
+    radial-gradient(40% 44% at 20% 78%, rgba(7,135,92,.45), transparent 62%);
+  opacity: .42;
+  animation: paint-b 46s ease-in-out infinite alternate;
+}
+@keyframes paint-a {
+  0%   { transform: translate3d(-3%, -2%, 0) scale(1.05) rotate(0deg); }
+  100% { transform: translate3d(4%, 3%, 0) scale(1.2) rotate(9deg); }
+}
+@keyframes paint-b {
+  0%   { transform: translate3d(3%, 2%, 0) scale(1.14) rotate(0deg); }
+  100% { transform: translate3d(-4%, -3%, 0) scale(1.03) rotate(-11deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .section--ink::before, .section--ink::after,
+  .page-hero::before, .page-hero::after { animation: none; }
 }
 .section--cloud { background: var(--bg-2); border-block: 1px solid var(--line-soft); }
 .section-head { max-width: 640px; margin-bottom: clamp(2.2rem, 5vw, 3.2rem); }
@@ -399,11 +432,6 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 .page-hero {
   position: relative; isolation: isolate; color: #fff; overflow: hidden;
   background-color: var(--bg-deep);
-  background-image:
-    radial-gradient(60% 120% at 85% -20%, rgba(74,147,216,.1), transparent 60%),
-    linear-gradient(var(--grid-line) 1px, transparent 1px),
-    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-  background-size: auto, 54px 54px, 54px 54px;
   border-bottom: 1px solid var(--line-soft);
   padding: clamp(4rem, 8vw, 6rem) 0 clamp(3rem, 6vw, 4.2rem);
 }
