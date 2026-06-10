@@ -129,6 +129,31 @@
     });
   }
 
+  /* ---------- stat count-up (additive: html already shows final value) ---------- */
+  var counters = document.querySelectorAll("[data-count]");
+  if (counters.length && !prefersReduced && "IntersectionObserver" in window) {
+    var cio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target; cio.unobserve(el);
+        var target = parseFloat(el.getAttribute("data-count")) || 0;
+        var dec = parseInt(el.getAttribute("data-decimals") || "0", 10);
+        var suffix = el.getAttribute("data-suffix") || "";
+        var dur = 1500, t0 = null;
+        function step(t) {
+          if (t0 === null) t0 = t;
+          var p = Math.min((t - t0) / dur, 1);
+          var v = target * (1 - Math.pow(1 - p, 3));
+          el.textContent = v.toFixed(dec) + suffix;
+          if (p < 1) requestAnimationFrame(step);
+          else el.textContent = target.toFixed(dec) + suffix;
+        }
+        requestAnimationFrame(step);
+      });
+    }, { threshold: 0.4 });
+    counters.forEach(function (c) { cio.observe(c); });
+  }
+
   /* ---------- current year ---------- */
   var yearEl = document.querySelector("[data-year]");
   if (yearEl) yearEl.textContent = new Date().getFullYear();

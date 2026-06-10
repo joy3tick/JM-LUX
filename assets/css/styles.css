@@ -454,6 +454,80 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 .center-cta { text-align: center; margin-top: clamp(2rem, 4vw, 3rem); }
 
 /* =====================================================================
+   delight: geometric shapes, micro-interactions, motion
+   ===================================================================== */
+
+/* ---- geometric decorations (decorative only, aria-hidden) ---- */
+.geo { position: absolute; z-index: 1; pointer-events: none; }
+.geo--ring { border: 1.5px solid rgba(124,184,239,.30); border-radius: 50%; }
+.geo--ring2 { border: 1.5px solid rgba(124,184,239,.22); border-radius: 50%; box-shadow: inset 0 0 0 12px rgba(124,184,239,.05); }
+.geo--dots { background-image: radial-gradient(rgba(124,184,239,.5) 1.5px, transparent 1.6px); background-size: 16px 16px; opacity: .7; }
+.geo--diamond { background: var(--gold-grad); border-radius: 3px; transform: rotate(45deg); box-shadow: 0 10px 28px -8px rgba(47,143,208,.6); }
+.geo--tri { width: 0 !important; height: 0 !important; border-left: 15px solid transparent; border-right: 15px solid transparent; border-bottom: 26px solid rgba(124,184,239,.25); }
+
+@keyframes float-y { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+@keyframes float-yd { 0%,100% { transform: translateY(0) rotate(45deg); } 50% { transform: translateY(-16px) rotate(45deg); } }
+@keyframes spin { to { transform: rotate(360deg); } }
+.anim-float { animation: float-y 9s var(--ease) infinite; }
+.anim-floatd { animation: float-yd 8s var(--ease) infinite; }
+.anim-spin { animation: spin 40s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .geo { animation: none !important; } }
+
+/* keep real content above the decorations */
+.section > .container, .stats > .container, .page-hero > .container,
+.cta-inner, .hero-inner { position: relative; z-index: 2; }
+
+/* ---- button gloss sweep ---- */
+.btn { position: relative; overflow: hidden; }
+.btn::after {
+  content: ""; position: absolute; top: 0; left: -130%; width: 55%; height: 100%; z-index: 0;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.38), transparent);
+  transform: skewX(-20deg); pointer-events: none;
+}
+.btn:hover::after { animation: btn-sheen .85s var(--ease); }
+@keyframes btn-sheen { from { left: -130%; } to { left: 150%; } }
+
+/* ---- service card flourish ---- */
+.service-card { position: relative; overflow: hidden; }
+.service-card::before {
+  content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--gold-grad); transform: scaleX(0); transform-origin: left;
+  transition: transform .45s var(--ease);
+}
+.service-card:hover::before { transform: scaleX(1); }
+.svc-icon { transition: transform .45s var(--ease), border-color .3s var(--ease), background .3s var(--ease); }
+.service-card:hover .svc-icon { transform: translateY(-3px) rotate(-8deg); border-color: var(--gold); background: rgba(74,147,216,.14); }
+
+/* ---- hero motion ---- */
+.hero-img { animation: kenburns 26s var(--ease) infinite alternate; }
+@keyframes kenburns { 0% { transform: scale(1.03); } 100% { transform: scale(1.14) translate3d(-1.5%, -1.2%, 0); } }
+.hero-title .accent, .page-hero h1 .accent { background-size: 220% auto; animation: shimmer 7s linear infinite; }
+@keyframes shimmer { to { background-position: 220% center; } }
+@media (prefers-reduced-motion: reduce) { .hero-img, .hero-title .accent, .page-hero h1 .accent { animation: none; } }
+
+/* ---- stats band ---- */
+.stats { position: relative; overflow: hidden; padding: clamp(2.6rem, 5vw, 3.6rem) 0; }
+.stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--line-soft); border: 1px solid var(--line-soft); border-radius: var(--radius); overflow: hidden; }
+.stat { background: var(--bg-deep); padding: 1.8rem 1.2rem; text-align: center; transition: background .3s var(--ease); }
+.stat:hover { background: #161b23; }
+.stat-num { display: block; font-family: var(--font-display); font-weight: 600; font-size: clamp(2.1rem, 4.4vw, 3rem); line-height: 1; background: var(--gold-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat-label { display: block; margin-top: .5rem; font-size: .74rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--text-soft); }
+
+/* ---- cta banner geometry ---- */
+.cta-banner::before {
+  content: ""; position: absolute; z-index: 0; width: 300px; height: 300px; right: -70px; top: -110px;
+  border-radius: 50%; border: 1.5px dashed rgba(255,255,255,.28);
+  animation: spin 60s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) { .cta-banner::before { animation: none; } }
+
+/* ---- centered section-title flourish ---- */
+.section-head--center .section-title::after {
+  content: ""; display: block; width: 54px; height: 3px; margin: .95rem auto 0;
+  background: var(--gold-grad); border-radius: 3px;
+}
+
+/* =====================================================================
    responsive
    ===================================================================== */
 @media (max-width: 1024px) {
@@ -467,6 +541,7 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 }
 @media (max-width: 860px) {
   .phone-link span { display: none; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
   .about-layout, .contact-layout { grid-template-columns: 1fr; }
   .about-visual { max-width: 460px; }
   .reviews-grid { grid-template-columns: 1fr; }
