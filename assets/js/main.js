@@ -4,6 +4,8 @@
 (function () {
   "use strict";
 
+  document.documentElement.classList.add("js");
+
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   /* ---------- sticky header + back-to-top ---------- */
@@ -34,26 +36,9 @@
     });
   }
 
-  /* ---------- scroll reveal ---------- */
-  var reveals = document.querySelectorAll("[data-reveal]");
-  if (prefersReduced || !("IntersectionObserver" in window)) {
-    reveals.forEach(function (el) { el.classList.add("is-in"); });
-  } else {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        var el = entry.target;
-        var siblings = Array.prototype.slice.call(
-          (el.parentElement || document).querySelectorAll(":scope > [data-reveal]")
-        );
-        var i = siblings.indexOf(el);
-        el.style.transitionDelay = (i > 0 ? Math.min(i, 6) * 70 : 0) + "ms";
-        el.classList.add("is-in");
-        io.unobserve(el);
-      });
-    }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
-    reveals.forEach(function (el) { io.observe(el); });
-  }
+  /* ---------- scroll reveal ----------
+     Handled entirely in CSS now (a pure load animation gated behind .js).
+     No JS visibility toggling, so content can never be stranded invisible. */
 
   /* ---------- marquee: pause off-screen ---------- */
   var marquee = document.querySelector("[data-marquee]");

@@ -385,10 +385,15 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 .back-to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
 .back-to-top:hover { filter: brightness(1.08); }
 
-/* ---------- reveal ---------- */
-.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease), transform .7s var(--ease); will-change: opacity, transform; }
-.reveal.is-in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+/* ---------- reveal ----------
+   Pure-CSS entrance animation. The element's natural state is fully visible
+   (opacity defaults to 1); the animation only plays when .js is present and
+   always resolves to visible (animation-fill-mode both). No JS, no scroll
+   dependency, so content can never be left hidden. */
+.reveal { will-change: opacity, transform; }
+.js .reveal { animation: reveal-in .7s var(--ease) both; }
+@keyframes reveal-in { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .js .reveal { animation: none; } }
 
 /* ---------- inner-page hero ---------- */
 .page-hero {
