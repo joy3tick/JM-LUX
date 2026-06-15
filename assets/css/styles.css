@@ -298,6 +298,12 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 .process-num { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: transparent; border: 1px solid rgba(74,147,216,.55); color: var(--gold); font-family: var(--font-display); font-weight: 600; font-size: 1.1rem; margin-bottom: .9rem; }
 .process-step h3 { font-size: 1.12rem; }
 .process-step p { color: var(--text-soft); font-size: .92rem; margin-top: .4rem; }
+.process-feature { margin: 0 auto clamp(2.2rem, 4vw, 3.2rem); max-width: 940px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); aspect-ratio: 12 / 5; }
+.process-feature img { width: 100%; height: 100%; object-fit: cover; }
+
+/* prep photo in the home why section */
+.why-photo { margin-top: clamp(1.6rem, 3vw, 2.2rem); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line-soft); box-shadow: var(--shadow); aspect-ratio: 16 / 10; }
+.why-photo img { width: 100%; height: 100%; object-fit: cover; }
 
 /* ---------- gallery ---------- */
 .gallery { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 300px; gap: 1.15rem; grid-auto-flow: dense; }
