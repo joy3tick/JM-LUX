@@ -363,8 +363,9 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 .cta-actions { display: flex; flex-wrap: wrap; gap: .8rem; }
 
 /* ---------- contact ---------- */
-.contact-layout { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(2.2rem, 5vw, 4rem); align-items: start; }
-.contact-list { display: grid; gap: 1.1rem; margin-top: 2rem; }
+.contact-layout { display: grid; grid-template-columns: .92fr 1.08fr; gap: clamp(1.4rem, 3vw, 2rem); align-items: start; }
+.contact-info { padding: clamp(1.7rem, 3vw, 2.3rem); }
+.contact-list { display: grid; gap: 1.25rem; }
 .contact-list li { display: flex; gap: .9rem; align-items: flex-start; }
 .ci-ico { display: grid; place-items: center; width: 46px; height: 46px; flex: none; border-radius: 50%; background: rgba(47,124,194,.08); color: var(--gold-deep); border: 1px solid rgba(47,124,194,.35); }
 .ci-ico svg { width: 20px; height: 20px; }
@@ -372,8 +373,10 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 .contact-list a, .contact-list div > span:last-child { font-weight: 500; color: var(--text); }
 .contact-list a:hover { color: var(--gold-deep); }
 
-.social-row { display: flex; gap: .7rem; margin-top: 1.9rem; }
-.social-link { display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius-sm); background: #fff; border: 1px solid var(--line); color: var(--heading); transition: transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease); }
+.contact-social { margin-top: 1.7rem; padding-top: 1.6rem; border-top: 1px solid var(--line-soft); }
+.contact-social .ci-label { margin-bottom: .75rem; }
+.social-row { display: flex; gap: .7rem; }
+.social-link { display: grid; place-items: center; width: 44px; height: 44px; border-radius: var(--radius-sm); background: var(--bg-cloud); border: 1px solid var(--line); color: var(--heading); transition: transform .25s var(--ease), background .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease); }
 .social-link svg { width: 20px; height: 20px; }
 .social-link:hover { transform: translateY(-3px); background: var(--gold); color: #fff; border-color: transparent; }
 

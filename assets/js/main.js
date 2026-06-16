@@ -177,6 +177,7 @@
       var phone = (data.get("phone") || "").toString().trim();
       var service = (data.get("service") || "").toString().trim();
       var message = (data.get("message") || "").toString().trim();
+      var location = (data.get("location") || "").toString().trim();
       if (!name || !email) {
         setNote("Please add your name and email so we can reach you.", "is-error");
         return;
@@ -184,7 +185,7 @@
       var subject = "Estimate request: " + service + " (" + name + ")";
       var body = [
         "Name: " + name, "Email: " + email, "Phone: " + (phone || "Not provided"),
-        "Project type: " + service, "", "Details:", message || "No details provided"
+        "Project type: " + service, "City/Town: " + (location || "Not provided"), "", "Details:", message || "No details provided"
       ].join("\n");
       window.location.href = "mailto:jmluxpainting@gmail.com?subject=" +
         encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
