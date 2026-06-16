@@ -254,12 +254,15 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.7rem; box-shadow: var(--shadow-sm); transition: transform .3s var(--ease), box-shadow .3s var(--ease), border-color .3s var(--ease); }
 
 .services-grid { grid-template-columns: repeat(4, 1fr); }
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
 .service-card { display: flex; flex-direction: column; padding: 0; }
 .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: rgba(47,124,194,.4); }
 .svc-media { aspect-ratio: 16 / 10; overflow: hidden; flex: none; }
 .svc-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
 .service-card:hover .svc-media img { transform: scale(1.07); }
-.svc-body { padding: 1.3rem 1.4rem 1.5rem; display: grid; gap: .5rem; align-content: start; flex: 1; }
+.svc-body { padding: 1.3rem 1.4rem 1.5rem; display: flex; flex-direction: column; gap: .55rem; flex: 1; }
+.card-link { margin-top: auto; padding-top: .85rem; color: var(--gold-deep); font-family: var(--font-display); font-weight: 600; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; transition: color .25s var(--ease); }
+.service-card:hover .card-link { color: var(--gold); }
 .service-card h3 { font-size: 1.14rem; letter-spacing: .01em; }
 .service-card p { color: var(--text-soft); font-size: .94rem; }
 .service-card--cta { background: linear-gradient(160deg, rgba(47,124,194,.12), rgba(47,124,194,.03)); border: 1px solid rgba(47,124,194,.4); justify-content: center; padding: 1.7rem; gap: .55rem; }
@@ -532,6 +535,7 @@ body.menu-open .mobile-nav { transform: translateY(0); }
   .phone-link span { display: none; }
   .stats-grid { grid-template-columns: 1fr 1fr; gap: clamp(1.8rem, 5vw, 2.6rem) 1rem; }
   .stat + .stat::before { display: none; }
+  .feature-grid { grid-template-columns: 1fr; max-width: 440px; margin-inline: auto; }
   .about-layout, .contact-layout { grid-template-columns: 1fr; }
   .about-visual { max-width: 460px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
