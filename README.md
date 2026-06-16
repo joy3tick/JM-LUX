@@ -13,6 +13,7 @@ with **no build step and no dependencies**.
 
 - **On-brand palette** — colors sampled directly from the logo (`#07875c → #0f8a83 → #3a86c4`), applied as design tokens in `:root`.
 - **Real project photography** — the client's own portfolio photos, optimized for web and used in the hero, About, and a filterable gallery (Interior / Exterior / Commercial) with a keyboard-accessible lightbox.
+- **Interactive service-area map** — a dependency-free, hand-built SVG map of the Merrimack Valley (`areas.html`) with geographically-accurate town pins, MA/NH state line, distance rings from the Lawrence shop, animated drop-in pins, hover/tap tooltips, connector lines, and a synced, searchable town finder you can filter by state.
 - **Zero build tooling** — plain HTML, CSS, and vanilla JS. Open `index.html` and it works.
 - **Fully responsive** — refined layouts from large desktops down to small phones, with an animated mobile menu.
 - **Accessible** — semantic landmarks, skip link, keyboard-friendly focus states, `aria` labels, and `prefers-reduced-motion` support.
@@ -24,10 +25,16 @@ with **no build step and no dependencies**.
 
 ```
 .
-├── index.html                  # All sections (hero, services, about, process, gallery, reviews, contact)
+├── index.html                  # Home (hero, services, why-us, work, reviews, CTA)
+├── services.html               # Services + process
+├── areas.html                  # Service-area page + interactive coverage map & town finder
+├── gallery.html                # Filterable project gallery + lightbox
+├── contact.html                # About + contact form
 ├── assets/
 │   ├── css/styles.css          # Brand tokens + components + responsive rules
+│   ├── css/areas.css           # Service-area map, pins, tooltip, and town-finder styles
 │   ├── js/main.js              # Header, mobile menu, reveals, marquee, gallery filter, lightbox, form
+│   ├── js/areas.js             # Builds map pins from the town list; search/filter/sync interactions
 │   └── img/
 │       ├── logo.png            # JM LUX logo (used in header + footer)
 │       ├── favicon.svg         # Brand mark (gradient house + skyline)
