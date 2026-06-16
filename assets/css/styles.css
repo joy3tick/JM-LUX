@@ -377,6 +377,10 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 .social-link svg { width: 20px; height: 20px; }
 .social-link:hover { transform: translateY(-3px); background: var(--gold); color: #fff; border-color: transparent; }
 
+/* service area map */
+.map-frame { position: relative; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); background: var(--bg-cloud); }
+.map-frame iframe { display: block; width: 100%; height: clamp(360px, 52vh, 520px); border: 0; }
+
 .contact-form { display: grid; gap: 1.1rem; padding: clamp(1.6rem, 3vw, 2.3rem); background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
 .field { display: grid; gap: .45rem; }
 .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
