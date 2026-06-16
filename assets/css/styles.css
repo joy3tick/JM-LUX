@@ -295,11 +295,14 @@ body.menu-open .mobile-nav { transform: translateY(0); }
 .about-points li { display: flex; align-items: center; gap: .55rem; font-size: .95rem; font-weight: 500; color: var(--text); }
 
 /* ---------- process ---------- */
-.process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; }
-.process-step { position: relative; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.6rem 1.5rem; box-shadow: var(--shadow-sm); }
-.process-step::before { content: ""; position: absolute; top: 0; left: 1.5rem; right: 1.5rem; height: 3px; background: var(--line); border-radius: 3px; }
-.process-step:first-child::before { background: var(--gold-grad); }
-.process-num { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: rgba(47,124,194,.08); border: 1px solid rgba(47,124,194,.4); color: var(--gold-deep); font-family: var(--font-display); font-weight: 600; font-size: 1.15rem; margin-bottom: 1rem; }
+.process { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem; list-style: none; margin: 0; padding: 0; }
+.process-step { position: relative; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 1.9rem 1.6rem 1.7rem; box-shadow: var(--shadow-sm); overflow: hidden; transition: transform .35s var(--ease), box-shadow .35s var(--ease), border-color .35s var(--ease); }
+.process-step::before { content: ""; position: absolute; inset: 0 0 auto 0; height: 3px; background: var(--gold-grad); opacity: 0; transition: opacity .35s var(--ease); }
+.process-step:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: rgba(47,124,194,.3); }
+.process-step:hover::before { opacity: 1; }
+.process-icon { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 16px; background: var(--gold-grad); color: #fff; box-shadow: 0 12px 22px -12px rgba(47,124,194,.75); margin-bottom: 1.15rem; transition: transform .35s var(--ease); }
+.process-step:hover .process-icon { transform: scale(1.06) rotate(-3deg); }
+.process-icon svg { width: 27px; height: 27px; }
 .process-step h3 { font-size: 1.14rem; }
 .process-step p { color: var(--text-soft); font-size: .93rem; margin-top: .45rem; }
 .process-feature { margin: 0 auto clamp(2.4rem, 4vw, 3.4rem); max-width: 960px; border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); box-shadow: var(--shadow); aspect-ratio: 12 / 5; }
