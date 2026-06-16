@@ -1,0 +1,80 @@
+/* =====================================================================
+   JM LUX Painting — Services page extras
+   Card "includes" lists + in-depth alternating specialty rows.
+   Builds on the tokens + .service-card styles in styles.css.
+   ===================================================================== */
+
+/* ---------- per-card "what's included" list ---------- */
+.svc-list {
+  display: grid; gap: .4rem;
+  margin-top: .65rem; padding-top: .85rem;
+  border-top: 1px solid var(--line-soft);
+}
+.svc-list li {
+  position: relative; padding-left: 1.4rem;
+  font-size: .85rem; line-height: 1.45; color: var(--text-soft);
+}
+.svc-list li::before {
+  content: ""; position: absolute; left: 2px; top: .45em;
+  width: 7px; height: 7px; border-radius: 2px;
+  background: var(--gold-grad); transform: rotate(45deg);
+}
+
+/* ---------- in-depth specialty rows ---------- */
+.svc-detail-list {
+  display: grid; gap: clamp(2.8rem, 6vw, 4.8rem);
+  margin-top: clamp(2.6rem, 5vw, 3.8rem);
+}
+.svc-detail {
+  display: grid; grid-template-columns: 1.02fr 1fr;
+  gap: clamp(1.8rem, 4vw, 3.4rem); align-items: center;
+}
+.svc-detail-media {
+  position: relative; border-radius: var(--radius); overflow: hidden;
+  border: 1px solid var(--line); box-shadow: var(--shadow);
+  aspect-ratio: 4 / 3.1;
+}
+.svc-detail-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.svc-detail:hover .svc-detail-media img { transform: scale(1.04); }
+/* alternate the image to the right on every other row */
+.svc-detail:nth-child(even) .svc-detail-media { order: 2; }
+
+.svc-detail-body .eyebrow { margin-bottom: .5rem; }
+.svc-detail-body h3 { font-size: clamp(1.5rem, 2.8vw, 2rem); }
+.svc-detail-body p { color: var(--text-soft); margin-top: .9rem; max-width: 52ch; }
+
+.svc-check {
+  display: grid; grid-template-columns: 1fr 1fr; gap: .55rem 1.2rem;
+  margin: 1.4rem 0 .4rem;
+}
+.svc-check li {
+  position: relative; padding-left: 1.7rem;
+  font-size: .92rem; font-weight: 500; color: var(--text);
+}
+.svc-check li::before {
+  content: ""; position: absolute; left: .4rem; top: .2em;
+  width: 6px; height: 11px; border: solid var(--gold-deep);
+  border-width: 0 2.5px 2.5px 0; transform: rotate(45deg);
+}
+.svc-detail-body .btn { margin-top: 1.6rem; }
+
+/* count chip on the media corner */
+.svc-detail-tag {
+  position: absolute; left: 14px; bottom: 14px; z-index: 2;
+  display: inline-flex; align-items: center; gap: .45rem;
+  padding: .5rem .9rem; border-radius: 999px;
+  background: rgba(255,255,255,.9); backdrop-filter: blur(6px);
+  border: 1px solid var(--line); box-shadow: var(--shadow-sm);
+  font-family: var(--font-display); font-weight: 600; font-size: .74rem;
+  letter-spacing: .04em; color: var(--gold-deep);
+}
+.svc-detail-tag svg { width: 16px; height: 16px; }
+
+@media (max-width: 860px) {
+  .svc-detail { grid-template-columns: 1fr; gap: 1.4rem; }
+  .svc-detail:nth-child(even) .svc-detail-media { order: 0; }
+  .svc-detail-media { max-width: 560px; }
+}
+@media (max-width: 480px) {
+  .svc-check { grid-template-columns: 1fr; }
+}
