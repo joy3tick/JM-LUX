@@ -3,15 +3,16 @@
 A modern, fast, fully responsive marketing site for **JM LUX Painting Inc.**, a
 residential & commercial painting company serving Massachusetts.
 
-A single-page experience built around the company's brand identity — the
-**emerald → teal → steel-blue gradient** pulled straight from the JM LUX logo —
-with a full-bleed photo hero, a filterable project gallery with a lightbox,
-smooth scroll-reveal animations, and a contact form. Built as a static site
+A warm, editorial multi-page experience — bone-paper surfaces, deep ink, and a
+single restrained **petrol-teal accent** drawn from the JM LUX logo, set in a
+**Fraunces** serif display face over **Inter** — with a full-bleed photo hero, a
+filterable project gallery with a lightbox, an interactive service-area map,
+restrained scroll-reveal motion, and a contact form. Built as a static site
 with **no build step and no dependencies**.
 
 ## Highlights
 
-- **On-brand palette** — colors sampled directly from the logo (`#07875c → #0f8a83 → #3a86c4`), applied as design tokens in `:root`.
+- **Premium, restrained palette** — warm bone paper, deep ink, and one petrol-teal accent (`#1d5c54`) with a brass micro-accent (`#a6864f`), applied as design tokens in `:root` — no rainbow gradients.
 - **Real project photography** — the client's own portfolio photos, optimized for web and used in the hero, About, and a filterable gallery (Interior / Exterior / Commercial) with a keyboard-accessible lightbox.
 - **Interactive service-area map** — a dependency-free, hand-built SVG map of the Merrimack Valley (`areas.html`) with geographically-accurate town pins, MA/NH state line, distance rings from the Lawrence shop, animated drop-in pins, hover/tap tooltips, connector lines, and a synced, searchable town finder you can filter by state.
 - **Zero build tooling** — plain HTML, CSS, and vanilla JS. Open `index.html` and it works.
