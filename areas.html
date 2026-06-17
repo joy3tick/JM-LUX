@@ -17,8 +17,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
   <link rel="stylesheet" href="assets/css/styles.css?v=15" />
-  <link rel="stylesheet" href="assets/css/areas.css?v=2" />
+  <link rel="stylesheet" href="assets/css/areas.css?v=3" />
 
   <script type="application/ld+json">
   {
@@ -111,7 +112,7 @@
           <a href="index.html">Home</a><span aria-hidden="true">/</span><span>Service Areas</span>
         </nav>
         <h1>Painting across the <span class="accent">Merrimack Valley.</span></h1>
-        <p class="lead">From our shop in Lawrence, we cover homes and businesses all over northeastern Massachusetts and southern New Hampshire. Explore the map, hover a pin, or search your town below.</p>
+        <p class="lead">From our shop in Lawrence, we cover homes and businesses all over northeastern Massachusetts and southern New Hampshire. Explore the live map, search your town, or browse the full list below.</p>
       </div>
     </section>
 
@@ -147,7 +148,7 @@
       <div class="container--wide">
         <header class="section-head section-head--center reveal" data-reveal>
           <h2 class="section-title">Find your town on the map</h2>
-          <p class="section-sub">Hover or tap any pin to see the town and how far it is from our Lawrence shop — or search the list. The blue rings show roughly 10 and 20 miles out.</p>
+          <p class="section-sub">Pan and zoom the map, or pick a town from the list to fly straight to it. The rings mark roughly 10 and 20 miles from our Lawrence shop.</p>
         </header>
 
         <div class="areas-shell">
@@ -165,58 +166,8 @@
             </div>
 
             <div class="map-stage" data-map-stage>
-              <svg class="map-svg" viewBox="0 0 1000 780" role="img" aria-label="Map of the Merrimack Valley showing JM LUX Painting service towns in Massachusetts and New Hampshire">
-                <defs>
-                  <linearGradient id="landGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#f2eee4" />
-                    <stop offset="1" stop-color="#e8e2d6" />
-                  </linearGradient>
-                  <linearGradient id="oceanGrad" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0" stop-color="#d3e0e2" />
-                    <stop offset="1" stop-color="#c2d3d4" />
-                  </linearGradient>
-                  <linearGradient id="lineGrad" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0" stop-color="#1d5c54" />
-                    <stop offset="1" stop-color="#2d8077" />
-                  </linearGradient>
-                  <pattern id="gridPat" width="42" height="42" patternUnits="userSpaceOnUse">
-                    <path d="M42 0H0V42" class="geo-grid" fill="none" />
-                  </pattern>
-                </defs>
-
-                <rect x="0" y="0" width="1000" height="780" class="geo-land" />
-                <rect x="0" y="0" width="1000" height="780" fill="url(#gridPat)" />
-                <path class="geo-ocean" d="M 832.2 -15.8 Q 832.2 -15.8 828.3 44.0 Q 824.4 103.9 819.5 143.8 Q 814.7 183.8 816.1 210.4 Q 817.6 237.0 810.3 263.6 Q 802.9 290.2 797.1 310.2 Q 791.2 330.1 797.1 356.7 Q 802.9 383.3 815.1 416.6 Q 827.4 449.9 833.2 476.5 Q 839.1 503.1 840.5 576.3 Q 842.0 649.5 837.1 709.3 T 832.2 769.2 L 1000 780 L 1000 0 Z" />
-                <path class="geo-coast" d="M 832.2 -15.8 Q 832.2 -15.8 828.3 44.0 Q 824.4 103.9 819.5 143.8 Q 814.7 183.8 816.1 210.4 Q 817.6 237.0 810.3 263.6 Q 802.9 290.2 797.1 310.2 Q 791.2 330.1 797.1 356.7 Q 802.9 383.3 815.1 416.6 Q 827.4 449.9 833.2 476.5 Q 839.1 503.1 840.5 576.3 Q 842.0 649.5 837.1 709.3 T 832.2 769.2" />
-
-                <!-- distance rings from the Lawrence shop -->
-                <circle class="geo-ring geo-ring--breathe" cx="477.4" cy="440.6" r="192.8" />
-                <circle class="geo-ring geo-ring--breathe r2" cx="477.4" cy="440.6" r="385.7" />
-                <text class="ring-label" x="332" y="300">10 mi</text>
-                <text class="ring-label" x="214" y="156">20 mi</text>
-
-                <!-- state line + region labels -->
-                <path class="geo-border" d="M 99.4 441.9 Q 99.4 441.9 206.8 442.6 Q 314.3 443.2 387.6 441.9 Q 460.9 440.6 519.5 436.6 Q 578.2 432.6 612.4 417.9 Q 646.6 403.3 663.7 360.1 Q 680.8 316.8 690.5 286.9 Q 700.3 256.9 715.0 235.0 Q 729.6 213.0 766.3 207.7 T 802.9 202.4" />
-                <text class="region-label" x="360" y="205" text-anchor="middle">New Hampshire</text>
-                <text class="region-label" x="262" y="700" text-anchor="middle">Massachusetts</text>
-                <text class="ocean-label" x="912" y="430" text-anchor="middle" transform="rotate(90 912 430)">Atlantic</text>
-
-                <!-- connector line layer (filled by JS, sits under the HTML pins) -->
-                <g data-lines=""></g>
-              </svg>
-
-              <span class="map-scan" aria-hidden="true"></span>
-
-              <!-- pins are generated from the list below -->
-              <div class="map-pins" data-pins></div>
-
-              <div class="map-tooltip" data-tooltip role="status" aria-live="polite"></div>
-
-              <div class="map-legend" aria-hidden="true">
-                <span><span class="lg-dot lg-dot--hq"></span> Our shop</span>
-                <span><span class="lg-dot lg-dot--town"></span> Service town</span>
-                <span><span class="lg-ring"></span> 10 / 20-mi radius</span>
-              </div>
+              <div class="map-canvas" id="areaMap" data-map></div>
+              <noscript><p class="map-noscript">Enable JavaScript to explore the interactive coverage map — or browse our service towns in the list below.</p></noscript>
             </div>
           </div>
 
@@ -224,7 +175,7 @@
           <aside class="areas-panel reveal" data-reveal aria-label="Town finder">
             <div class="panel-head">
               <h2><b>19</b> cities &amp; towns</h2>
-              <p>Tap a town to highlight it on the map.</p>
+              <p>Search or pick a town to zoom the map to it.</p>
               <div class="area-search" data-search-wrap>
                 <svg class="as-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
                 <label for="area-search" class="sr-only" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search your town</label>
@@ -237,61 +188,61 @@
             </div>
 
             <ul class="area-list" data-area-list>
-              <li class="area-item" data-area data-name="Amesbury" data-state="MA" data-dist="16" data-x="705.2" data-y="239.1">
+              <li class="area-item" data-area data-name="Amesbury" data-state="MA" data-dist="16" data-lat="42.8584" data-lng="-70.93">
                 <button type="button" class="area-row"><span class="area-name">Amesbury</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~16 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Andover" data-state="MA" data-dist="4" data-x="503.1" data-y="505.4">
+              <li class="area-item" data-area data-name="Andover" data-state="MA" data-dist="4" data-lat="42.6583" data-lng="-71.1368">
                 <button type="button" class="area-row"><span class="area-name">Andover</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~4 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Atkinson" data-state="NH" data-dist="9" data-x="493.9" data-y="265.3">
+              <li class="area-item" data-area data-name="Atkinson" data-state="NH" data-dist="9" data-lat="42.8387" data-lng="-71.1462">
                 <button type="button" class="area-row"><span class="area-name">Atkinson</span><span class="area-meta"><span class="area-badge" data-state="NH">NH</span><span class="area-dist">~9 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Ballardvale" data-state="MA" data-dist="5" data-x="484.8" data-y="538.5">
+              <li class="area-item" data-area data-name="Ballardvale" data-state="MA" data-dist="5" data-lat="42.6334" data-lng="-71.1556">
                 <button type="button" class="area-row"><span class="area-name">Ballardvale</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~5 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Boxford" data-state="MA" data-dist="9" data-x="640.0" data-y="501.5">
+              <li class="area-item" data-area data-name="Boxford" data-state="MA" data-dist="9" data-lat="42.6612" data-lng="-70.9967">
                 <button type="button" class="area-row"><span class="area-name">Boxford</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~9 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Chelmsford" data-state="MA" data-dist="13" data-x="277.9" data-y="583.2">
+              <li class="area-item" data-area data-name="Chelmsford" data-state="MA" data-dist="13" data-lat="42.5998" data-lng="-71.3673">
                 <button type="button" class="area-row"><span class="area-name">Chelmsford</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~13 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Dracut" data-state="MA" data-dist="8" data-x="342.0" data-y="489.8">
+              <li class="area-item" data-area data-name="Dracut" data-state="MA" data-dist="8" data-lat="42.67" data-lng="-71.3017">
                 <button type="button" class="area-row"><span class="area-name">Dracut</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~8 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Groveland" data-state="MA" data-dist="8" data-x="607.7" data-y="374.0">
+              <li class="area-item" data-area data-name="Groveland" data-state="MA" data-dist="8" data-lat="42.757" data-lng="-71.0298">
                 <button type="button" class="area-row"><span class="area-name">Groveland</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~8 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Hampton" data-state="NH" data-dist="23" data-x="794.5" data-y="133.7">
+              <li class="area-item" data-area data-name="Hampton" data-state="NH" data-dist="23" data-lat="42.9376" data-lng="-70.8386">
                 <button type="button" class="area-row"><span class="area-name">Hampton</span><span class="area-meta"><span class="area-badge" data-state="NH">NH</span><span class="area-dist">~23 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Haverhill" data-state="MA" data-dist="7" data-x="561.3" data-y="348.5">
+              <li class="area-item" data-area data-name="Haverhill" data-state="MA" data-dist="7" data-lat="42.7762" data-lng="-71.0773">
                 <button type="button" class="area-row"><span class="area-name">Haverhill</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~7 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Lawrence" data-state="MA" data-dist="0" data-x="477.4" data-y="440.6" data-hq>
+              <li class="area-item" data-area data-name="Lawrence" data-state="MA" data-dist="0" data-lat="42.707" data-lng="-71.1631" data-hq>
                 <button type="button" class="area-row area-row--hq"><span class="area-name">Lawrence</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">Our shop</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Lowell" data-state="MA" data-dist="9" data-x="327.8" data-y="538.5">
+              <li class="area-item" data-area data-name="Lowell" data-state="MA" data-dist="9" data-lat="42.6334" data-lng="-71.3162">
                 <button type="button" class="area-row"><span class="area-name">Lowell</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~9 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Methuen" data-state="MA" data-dist="2" data-x="450.3" data-y="415.0">
+              <li class="area-item" data-area data-name="Methuen" data-state="MA" data-dist="2" data-lat="42.7262" data-lng="-71.1909">
                 <button type="button" class="area-row"><span class="area-name">Methuen</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~2 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Newbury" data-state="MA" data-dist="17" data-x="778.5" data-y="337.0">
+              <li class="area-item" data-area data-name="Newbury" data-state="MA" data-dist="17" data-lat="42.7848" data-lng="-70.855">
                 <button type="button" class="area-row"><span class="area-name">Newbury</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~17 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="North Andover" data-state="MA" data-dist="2" data-x="504.9" data-y="451.7">
+              <li class="area-item" data-area data-name="North Andover" data-state="MA" data-dist="2" data-lat="42.6986" data-lng="-71.135">
                 <button type="button" class="area-row"><span class="area-name">North Andover</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~2 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Pelham" data-state="NH" data-dist="9" data-x="317.3" data-y="400.6">
+              <li class="area-item" data-area data-name="Pelham" data-state="NH" data-dist="9" data-lat="42.737" data-lng="-71.327">
                 <button type="button" class="area-row"><span class="area-name">Pelham</span><span class="area-meta"><span class="area-badge" data-state="NH">NH</span><span class="area-dist">~9 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Salem" data-state="NH" data-dist="6" data-x="440.5" data-y="332.3">
+              <li class="area-item" data-area data-name="Salem" data-state="NH" data-dist="6" data-lat="42.7884" data-lng="-71.2009">
                 <button type="button" class="area-row"><span class="area-name">Salem</span><span class="area-meta"><span class="area-badge" data-state="NH">NH</span><span class="area-dist">~6 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Westford" data-state="MA" data-dist="17" data-x="209.2" data-y="610.5">
+              <li class="area-item" data-area data-name="Westford" data-state="MA" data-dist="17" data-lat="42.5793" data-lng="-71.4376">
                 <button type="button" class="area-row"><span class="area-name">Westford</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~17 mi</span></span></button>
               </li>
-              <li class="area-item" data-area data-name="Wilmington" data-state="MA" data-dist="11" data-x="467.4" data-y="654.1">
+              <li class="area-item" data-area data-name="Wilmington" data-state="MA" data-dist="11" data-lat="42.5465" data-lng="-71.1734">
                 <button type="button" class="area-row"><span class="area-name">Wilmington</span><span class="area-meta"><span class="area-badge" data-state="MA">MA</span><span class="area-dist">~11 mi</span></span></button>
               </li>
             </ul>
@@ -353,6 +304,7 @@
   </a>
 
   <script src="assets/js/main.js?v=5" defer></script>
-  <script src="assets/js/areas.js?v=1" defer></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin="" defer></script>
+  <script src="assets/js/areas.js?v=2" defer></script>
 </body>
 </html>

@@ -8,7 +8,8 @@ single restrained **petrol-teal accent** drawn from the JM LUX logo, set in a
 **Fraunces** serif display face over **Inter** — with a full-bleed photo hero, a
 filterable project gallery with a lightbox, an interactive service-area map,
 restrained scroll-reveal motion, and a contact form. Built as a static site
-with **no build step and no dependencies**.
+with **no build step** and no runtime dependencies (aside from Leaflet, loaded
+from a CDN, which powers the interactive map on the Service Areas page).
 
 ## Highlights
 
@@ -35,7 +36,7 @@ with **no build step and no dependencies**.
 │   ├── css/styles.css          # Brand tokens + components + responsive rules
 │   ├── css/areas.css           # Service-area map, pins, tooltip, and town-finder styles
 │   ├── js/main.js              # Header, mobile menu, reveals, marquee, gallery filter, lightbox, form
-│   ├── js/areas.js             # Builds map pins from the town list; search/filter/sync interactions
+│   ├── js/areas.js             # Leaflet map: builds markers from the town list; search/filter/sync
 │   └── img/
 │       ├── logo.png            # JM LUX logo (used in header + footer)
 │       ├── favicon.svg         # Brand mark (gradient house + skyline)

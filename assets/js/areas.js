@@ -1,36 +1,28 @@
 /* =====================================================================
-   JM LUX Painting - Service Areas interactive map
+   JM LUX Painting - Service Areas interactive map (Leaflet)
    Single source of truth = the semantic town list in the HTML (each <li>
-   carries data-x / data-y / data-state / data-dist). This script builds
-   the map pins from it, then keeps map + list + tooltip + search in sync.
-   Progressive enhancement: with JS off, the list + static map still render.
+   carries data-lat / data-lng / data-state / data-dist). This builds the
+   real map markers from it and keeps map + list + search in sync.
+   Progressive enhancement: with JS (or Leaflet) unavailable, the list works.
    ===================================================================== */
 (function () {
   "use strict";
 
-  var stage = document.querySelector("[data-map-stage]");
+  var mapEl = document.querySelector("[data-map]");
   var listEl = document.querySelector("[data-area-list]");
-  if (!stage || !listEl) return;
+  if (!mapEl || !listEl) return;
+  if (!window.L) { mapEl.classList.add("is-unavailable"); return; }
 
-  var pinsLayer = stage.querySelector("[data-pins]");
-  var tooltip = stage.querySelector("[data-tooltip]");
-  var linesGroup = stage.querySelector("[data-lines]");
   var searchWrap = document.querySelector("[data-search-wrap]");
   var searchInput = document.querySelector("[data-search]");
   var clearBtn = document.querySelector("[data-search-clear]");
-  var chips = Array.prototype.slice.call(document.querySelectorAll("[data-chip]"));
+  var chips = [].slice.call(document.querySelectorAll("[data-chip]"));
   var resetBtn = document.querySelector("[data-map-reset]");
   var countEl = document.querySelector("[data-count-out]");
   var emptyEl = document.querySelector("[data-empty]");
 
-  var SVGNS = "http://www.w3.org/2000/svg";
-  var VBW = 1000, VBH = 780;
-  var HQ = { x: 477.4, y: 440.6 };
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  var hover = null, pinned = null;
-  var stateFilter = "all", query = "";
-  var lastRenderedId = null;
+  var ACCENT = "#1d5c54";
 
   function esc(s) {
     return s.replace(/[&<>"]/g, function (c) {
@@ -38,127 +30,120 @@
     });
   }
 
-  /* ---------- build model + pins from the list ---------- */
-  var items = Array.prototype.slice.call(listEl.querySelectorAll("[data-area]"));
-  var areas = items.map(function (li, i) {
-    var x = parseFloat(li.getAttribute("data-x"));
-    var y = parseFloat(li.getAttribute("data-y"));
-    var st = li.getAttribute("data-state");
-    var dist = li.getAttribute("data-dist") || "";
-    var hq = li.hasAttribute("data-hq");
-    var nameEl = li.querySelector(".area-name");
-    var name = (li.getAttribute("data-name") || (nameEl ? nameEl.textContent : "")).trim();
-    var row = li.querySelector(".area-row");
-    var stateName = st === "NH" ? "New Hampshire" : "Massachusetts";
-
-    var pin = document.createElement("button");
-    pin.type = "button";
-    pin.className = "map-pin" + (hq ? " map-pin--hq" : "");
-    pin.style.left = (x / VBW * 100) + "%";
-    pin.style.top = (y / VBH * 100) + "%";
-    pin.style.setProperty("--d", (hq ? 120 : 260 + i * 42) + "ms");
-    pin.setAttribute("aria-label", hq
-      ? name + ", " + stateName + " (our shop)"
-      : name + ", " + stateName + ", about " + dist + " miles from our shop");
-
-    if (hq) {
-      var p1 = document.createElement("span"); p1.className = "pin-pulse";
-      var p2 = document.createElement("span"); p2.className = "pin-pulse p2";
-      pin.appendChild(p1); pin.appendChild(p2);
-    }
-    var dot = document.createElement("span");
-    dot.className = "pin-dot";
-    if (hq) dot.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9.5V20h14V9.5"/><path d="M9.5 20v-6h5v6"/></svg>';
-    pin.appendChild(dot);
-    pinsLayer.appendChild(pin);
-
-    return {
-      id: String(i), li: li, row: row, pin: pin,
-      x: x, y: y, st: st, dist: dist, hq: hq,
-      name: name, nameLower: name.toLowerCase(), visible: true
+  /* ---------- model from the list ---------- */
+  var HQ = null;
+  var areas = [].slice.call(listEl.querySelectorAll("[data-area]")).map(function (li) {
+    var a = {
+      li: li,
+      row: li.querySelector(".area-row"),
+      lat: parseFloat(li.getAttribute("data-lat")),
+      lng: parseFloat(li.getAttribute("data-lng")),
+      st: li.getAttribute("data-state"),
+      dist: li.getAttribute("data-dist") || "",
+      hq: li.hasAttribute("data-hq"),
+      name: (li.getAttribute("data-name") || "").trim(),
+      marker: null, visible: true
     };
+    a.nameLower = a.name.toLowerCase();
+    if (a.hq) HQ = a;
+    return a;
   });
 
-  /* ---------- connector line (HQ -> active town) ---------- */
-  var line = document.createElementNS(SVGNS, "path");
-  line.setAttribute("class", "map-line");
-  linesGroup.appendChild(line);
+  /* ---------- map + tiles ---------- */
+  var map = L.map(mapEl, { scrollWheelZoom: false, zoomControl: true });
+  L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: "abcd", maxZoom: 19
+  }).addTo(map);
+  map.zoomControl.setPosition("topright");
+  // avoid scroll-jacking: only enable wheel zoom once the map is focused/clicked
+  map.on("focus", function () { map.scrollWheelZoom.enable(); });
+  map.on("blur", function () { map.scrollWheelZoom.disable(); });
 
-  function setLine(a) {
-    if (!a || a.hq) { line.classList.remove("is-on"); return; }
-    var dx = a.x - HQ.x, dy = a.y - HQ.y;
-    var len = Math.hypot(dx, dy) || 1;
-    var bow = Math.min(len * 0.16, 64);
-    var cx = (HQ.x + a.x) / 2 + (-dy / len) * bow;
-    var cy = (HQ.y + a.y) / 2 + (dx / len) * bow;
-    line.setAttribute("d", "M " + HQ.x + " " + HQ.y + " Q " + cx.toFixed(1) + " " + cy.toFixed(1) + " " + a.x + " " + a.y);
-    var total = line.getTotalLength();
-    line.style.transition = "none";
-    line.style.strokeDasharray = total;
-    line.style.strokeDashoffset = total;
-    void line.getBoundingClientRect();          // force reflow so the draw animates
-    line.classList.add("is-on");
-    line.style.transition = "stroke-dashoffset .55s var(--ease), opacity .3s var(--ease)";
-    line.style.strokeDashoffset = "0";
-  }
-
-  /* ---------- tooltip ---------- */
-  function showTip(a) {
-    if (!a) { tooltip.classList.remove("is-on"); return; }
-    var sub = a.hq
-      ? '<span class="tt-hq">Our shop in Lawrence, MA</span>'
-      : '<span class="tt-badge" data-state="' + a.st + '">' + a.st + '</span><span>~' + a.dist + ' mi from us</span>';
-    tooltip.innerHTML = '<span class="tt-name">' + esc(a.name) + '</span><span class="tt-sub">' + sub + '</span>';
-    tooltip.style.left = (a.x / VBW * 100) + "%";
-    tooltip.style.top = (a.y / VBH * 100) + "%";
-    tooltip.classList.toggle("flip", a.y < 150);
-    tooltip.classList.add("is-on");
-  }
-
-  /* ---------- render the currently-shown town ---------- */
-  function current() { return hover || pinned; }
-  function render() {
-    var a = current();
-    var id = a ? a.id : null;
-    areas.forEach(function (o) {
-      var on = (o === a);
-      o.pin.classList.toggle("is-active", on);
-      o.li.classList.toggle("is-active", on);
+  /* ---------- service-radius rings ---------- */
+  if (HQ) {
+    [16093.4, 32186.9].forEach(function (r) {
+      L.circle([HQ.lat, HQ.lng], {
+        radius: r, color: ACCENT, weight: 1.2, opacity: .5, dashArray: "4 7",
+        fill: true, fillColor: ACCENT, fillOpacity: .03, interactive: false
+      }).addTo(map);
     });
-    if (id !== lastRenderedId) { showTip(a); setLine(a); lastRenderedId = id; }
   }
 
-  function setHover(a) { hover = a; render(); }
-  function clearHover() { hover = null; render(); }
-  function togglePin(a) {
-    pinned = (pinned === a) ? null : a;
-    render();
-    if (pinned && pinned.li.scrollIntoView) {
-      pinned.li.scrollIntoView({ block: "nearest", behavior: prefersReduced ? "auto" : "smooth" });
+  /* ---------- markers ---------- */
+  function icon(a) {
+    return L.divIcon({
+      className: "",
+      html: a.hq
+        ? '<span class="pin pin--hq"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5 9.5V20h14V9.5"/><path d="M9.5 20v-6h5v6"/></svg></span>'
+        : '<span class="pin"></span>',
+      iconSize: a.hq ? [34, 34] : [20, 20],
+      iconAnchor: a.hq ? [17, 17] : [10, 10],
+      popupAnchor: [0, a.hq ? -18 : -11]
+    });
+  }
+  function pinEl(a) { return a.marker && a.marker._icon ? a.marker._icon.querySelector(".pin") : null; }
+
+  areas.forEach(function (a) {
+    var sub = a.hq
+      ? '<span class="pop-sub">Our shop &middot; Lawrence, MA</span>'
+      : '<span class="pop-sub"><i class="pop-badge" data-state="' + a.st + '">' + a.st + '</i> ~' + a.dist + ' mi from us</span>';
+    a.marker = L.marker([a.lat, a.lng], {
+      icon: icon(a), title: a.name + (a.hq ? " (our shop)" : ", " + a.st), riseOnHover: true, keyboard: false
+    }).bindPopup("<b>" + esc(a.name) + "</b>" + sub, {
+      className: "area-popup", closeButton: false, offset: [0, a.hq ? -8 : -4]
+    });
+    a.marker.on("mouseover", function () { setHover(a); });
+    a.marker.on("mouseout", function () { clearHover(); });
+    a.marker.on("click", function () { selectArea(a); });
+    a.marker.addTo(map);
+  });
+
+  function visibleBounds() {
+    var pts = areas.filter(function (a) { return a.visible || a.hq; }).map(function (a) { return [a.lat, a.lng]; });
+    return pts.length ? L.latLngBounds(pts) : null;
+  }
+  function fitVisible(animate) {
+    var b = visibleBounds();
+    if (b) map.fitBounds(b.pad(0.18), { animate: !!animate && !prefersReduced, maxZoom: 12 });
+  }
+
+  /* ---------- hover / active sync ---------- */
+  var hovered = null, active = null;
+  function paint() {
+    areas.forEach(function (a) {
+      var on = (a === hovered || a === active);
+      var p = pinEl(a);
+      if (p) p.classList.toggle("is-active", on);
+      if (a.marker && a.marker.setZIndexOffset) a.marker.setZIndexOffset(on ? 1000 : 0);
+      a.li.classList.toggle("is-active", a === active);
+      a.li.classList.toggle("is-hover", a === hovered && a !== active);
+    });
+  }
+  function setHover(a) { hovered = a; paint(); }
+  function clearHover() { hovered = null; paint(); }
+  function selectArea(a) {
+    active = (active === a) ? null : a;
+    paint();
+    if (active) {
+      map.flyTo([a.lat, a.lng], Math.max(map.getZoom(), 12), { animate: !prefersReduced, duration: .6 });
+      a.marker.openPopup();
+      if (a.li.scrollIntoView) a.li.scrollIntoView({ block: "nearest", behavior: prefersReduced ? "auto" : "smooth" });
+    } else {
+      map.closePopup();
     }
   }
 
-  /* ---------- wire pin + row events ---------- */
   areas.forEach(function (a) {
-    a.pin.addEventListener("mouseenter", function () { setHover(a); });
-    a.pin.addEventListener("mouseleave", clearHover);
-    a.pin.addEventListener("focus", function () { setHover(a); });
-    a.pin.addEventListener("blur", clearHover);
-    a.pin.addEventListener("click", function (e) { e.stopPropagation(); togglePin(a); });
-
     a.row.addEventListener("mouseenter", function () { setHover(a); });
-    a.row.addEventListener("mouseleave", clearHover);
+    a.row.addEventListener("mouseleave", function () { clearHover(); });
     a.row.addEventListener("focus", function () { setHover(a); });
-    a.row.addEventListener("blur", clearHover);
-    a.row.addEventListener("click", function () { togglePin(a); });
-  });
-
-  // click empty map area to release a pinned town
-  stage.addEventListener("click", function (e) {
-    if (!e.target.closest(".map-pin") && pinned) { pinned = null; render(); }
+    a.row.addEventListener("blur", function () { clearHover(); });
+    a.row.addEventListener("click", function () { selectArea(a); });
   });
 
   /* ---------- filtering (state chips + search) ---------- */
+  var stateFilter = "all", query = "";
   function applyFilter() {
     var q = query.trim().toLowerCase();
     var shown = 0;
@@ -166,77 +151,72 @@
       var match = (stateFilter === "all" || a.st === stateFilter) && (!q || a.nameLower.indexOf(q) !== -1);
       a.visible = match;
       a.li.classList.toggle("is-hidden", !match);
-      // map: keep HQ always; dim (not remove) filtered-out towns to preserve the region shape
-      if (!a.hq) a.pin.classList.toggle("is-dim", !match);
-      if (match) shown++;
-
-      // highlight the matched substring in the list label
+      var onMap = match || a.hq;                    // keep the shop pinned to the map
+      if (a.marker) {
+        if (onMap && !map.hasLayer(a.marker)) a.marker.addTo(map);
+        else if (!onMap && map.hasLayer(a.marker)) map.removeLayer(a.marker);
+      }
       var nameEl = a.li.querySelector(".area-name");
       if (nameEl) {
         var hit = q ? a.nameLower.indexOf(q) : -1;
-        if (hit !== -1) {
-          nameEl.innerHTML = esc(a.name.slice(0, hit)) + "<mark>" + esc(a.name.slice(hit, hit + q.length)) + "</mark>" + esc(a.name.slice(hit + q.length));
-        } else {
-          nameEl.textContent = a.name;
-        }
+        nameEl.innerHTML = (hit !== -1)
+          ? esc(a.name.slice(0, hit)) + "<mark>" + esc(a.name.slice(hit, hit + q.length)) + "</mark>" + esc(a.name.slice(hit + q.length))
+          : esc(a.name);
       }
+      if (match) shown++;
     });
-
-    // if the pinned/hovered town got filtered away, drop it
-    if (pinned && !pinned.visible) { pinned = null; render(); }
-    if (hover && !hover.visible) { hover = null; render(); }
-
+    if (active && !active.visible) { active = null; map.closePopup(); }
+    if (hovered && !hovered.visible) hovered = null;
+    paint();
     if (countEl) countEl.innerHTML = "Showing <b>" + shown + "</b> of " + areas.length + " areas";
     if (emptyEl) emptyEl.hidden = shown !== 0;
     if (searchWrap) searchWrap.classList.toggle("has-text", query.length > 0);
-    if (resetBtn) resetBtn.hidden = (stateFilter === "all" && query === "" && !pinned);
+    if (resetBtn) resetBtn.hidden = (stateFilter === "all" && query === "");
   }
 
-  if (searchInput) {
-    searchInput.addEventListener("input", function () { query = searchInput.value; applyFilter(); });
-  }
-  if (clearBtn) {
-    clearBtn.addEventListener("click", function () {
-      query = ""; if (searchInput) { searchInput.value = ""; searchInput.focus(); } applyFilter();
-    });
-  }
+  if (searchInput) searchInput.addEventListener("input", function () { query = searchInput.value; applyFilter(); });
+  if (clearBtn) clearBtn.addEventListener("click", function () {
+    query = ""; if (searchInput) { searchInput.value = ""; searchInput.focus(); }
+    applyFilter(); fitVisible(true);
+  });
   chips.forEach(function (chip) {
     chip.addEventListener("click", function () {
       stateFilter = chip.getAttribute("data-chip");
-      chips.forEach(function (c) {
-        var on = c === chip;
-        c.classList.toggle("is-active", on);
-        c.setAttribute("aria-pressed", String(on));
-      });
-      applyFilter();
+      chips.forEach(function (c) { var on = c === chip; c.classList.toggle("is-active", on); c.setAttribute("aria-pressed", String(on)); });
+      applyFilter(); fitVisible(true);
     });
   });
-  if (resetBtn) {
-    resetBtn.addEventListener("click", function () {
-      stateFilter = "all"; query = ""; pinned = null; hover = null;
-      if (searchInput) searchInput.value = "";
-      chips.forEach(function (c) {
-        var on = c.getAttribute("data-chip") === "all";
-        c.classList.toggle("is-active", on);
-        c.setAttribute("aria-pressed", String(on));
-      });
-      render(); applyFilter();
-    });
-  }
-
+  if (resetBtn) resetBtn.addEventListener("click", function () {
+    stateFilter = "all"; query = ""; active = null; hovered = null; map.closePopup();
+    if (searchInput) searchInput.value = "";
+    chips.forEach(function (c) { var on = c.getAttribute("data-chip") === "all"; c.classList.toggle("is-active", on); c.setAttribute("aria-pressed", String(on)); });
+    applyFilter(); fitVisible(true);
+  });
   document.addEventListener("keydown", function (e) {
-    if (e.key === "Escape" && pinned) { pinned = null; render(); applyFilter(); }
+    if (e.key === "Escape" && active) { active = null; map.closePopup(); paint(); }
   });
+
+  /* ---------- legend (Leaflet control) ---------- */
+  var legend = L.control({ position: "bottomleft" });
+  legend.onAdd = function () {
+    var d = L.DomUtil.create("div", "map-legend");
+    d.innerHTML =
+      '<span><span class="lg-dot lg-dot--hq"></span> Our shop</span>' +
+      '<span><span class="lg-dot lg-dot--town"></span> Service town</span>' +
+      '<span><span class="lg-ring"></span> 10 / 20-mi radius</span>';
+    return d;
+  };
+  legend.addTo(map);
 
   /* ---------- chip counts ---------- */
   chips.forEach(function (chip) {
     var v = chip.getAttribute("data-chip");
     var nEl = chip.querySelector("[data-chip-n]");
-    if (!nEl) return;
-    nEl.textContent = v === "all"
-      ? areas.length
-      : areas.filter(function (a) { return a.st === v; }).length;
+    if (nEl) nEl.textContent = v === "all" ? areas.length : areas.filter(function (a) { return a.st === v; }).length;
   });
 
+  /* ---------- go ---------- */
   applyFilter();
+  map.whenReady(function () { map.invalidateSize(); fitVisible(false); });
+  window.addEventListener("load", function () { map.invalidateSize(); fitVisible(false); });
 })();
